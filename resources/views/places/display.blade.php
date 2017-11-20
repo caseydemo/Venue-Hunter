@@ -67,30 +67,11 @@
             }
        		 </style>
 <body>
-
-<!-- 	<ul><strong>Photo Html: {{ $indiv_photo_html_attrib }}</strong></ul>
-	<ul><strong>Photo Reference: {{ $indiv_photo_ref }}</strong></ul>
-	<ul><strong>viewport_ne_lat: {{ $viewport_ne_lat }}</strong></ul>
-	<ul><strong>viewport_ne_lng: {{ $viewport_ne_lng }}</strong></ul>
-	<ul><strong>viewport_sw_lat: {{ $viewport_sw_lat }}</strong></ul>
-	<ul><strong>viewport_sw_lng: {{ $viewport_sw_lng }}</strong></ul>
-	<ul><strong>Name: {{ $nameArray[0] }}  </strong></ul>
-	<ul><strong>Open Now: {{ var_dump($open_now) }} </strong></ul> 
-	<ul><strong>Rating: {{ $rating }} </strong></ul> 
-	<ul><strong>Reference: {{ $reference }} </strong></ul> 
-	<ul><strong>Scope: {{ $scope }}</strong></ul>
-	@foreach($types as $type)
-		<ul><strong>Type: {{ $type }}</strong></ul>
-	@endforeach -->
-	
     <a href="/"><button class="btn btn-alert">Back to search</button></a>
 
 	@for($i=0; $i<$loopCount-1; $i++)
 	<hr>
 		<ul><h1>Name: {{ $nameArray[$i] }}  </h1></ul>
-		<ul><strong>ID: {{ $idArray[$i] }} </strong></ul>
-		<ul><strong>Lattitude: {{ $location_lat_array[$i] }}</strong></ul>
-		<ul><strong>Longitude: {{ $location_lng_array[$i] }}</strong></ul>
         <ul><strong>Address: {{ $vicinityArray[$i] }}</strong></ul>
         <ul><strong>Open Now:
         @if($open_now_array[$i]) 
@@ -98,10 +79,27 @@
         @else
             No</strong></ul>
         @endif
-        <ul><strong>Place ID: {{ $place_id_array[$i] }}</strong></ul>
 
-        <a href="/detail/{{$place_id_array[$i]}}">Details</a>
+        <ul><strong><a href="/detail/{{$place_id_array[$i]}}">Details</a></strong></ul>
 
         <hr>
 	@endfor
 </body>
+
+
+<!-- REFERENCE -->
+
+
+<!--    <ul><strong>Photo Html: {{ $indiv_photo_html_attrib }}</strong></ul>
+    <ul><strong>viewport_ne_lat: {{ $viewport_ne_lat }}</strong></ul>
+    <ul><strong>viewport_ne_lng: {{ $viewport_ne_lng }}</strong></ul>
+    <ul><strong>viewport_sw_lat: {{ $viewport_sw_lat }}</strong></ul>
+    <ul><strong>viewport_sw_lng: {{ $viewport_sw_lng }}</strong></ul>
+    <ul><strong>Name: {{ $nameArray[0] }}  </strong></ul>
+    <ul><strong>Open Now: {{ var_dump($open_now) }} </strong></ul> 
+    <ul><strong>Rating: {{ $rating }} </strong></ul> 
+    <ul><strong>Reference: {{ $reference }} </strong></ul> 
+    <ul><strong>Scope: {{ $scope }}</strong></ul>
+    @foreach($types as $type)
+        <ul><strong>Type: {{ $type }}</strong></ul>
+    @endforeach -->

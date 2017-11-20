@@ -81,6 +81,8 @@
         @else
             No</strong></ul>
         @endif
+        <ul><a href="{{ $map_url }}" target="_blank">{{$name}} on google maps</a></ul>
+        <ul><a href="{{ $website }}" target="_blank">{{$name}}'s Website</a></ul>
         <ul><strong>Hours: 
         @for($i=0; $i<7; $i++)
             <p>{{ $hours[$i] }}</p>

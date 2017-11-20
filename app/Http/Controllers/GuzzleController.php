@@ -33,13 +33,16 @@ class GuzzleController extends Controller
 		$icon=$jsonResponse['result']['icon'];
 		$name=$jsonResponse['result']['name'];
 		
+
+		// Store hours
 		for($i=0; $i<7; $i++){
 			$hours[$i]=$jsonResponse['result']['opening_hours']['weekday_text'][$i]; // array
 		}
-
 		$open_now=$jsonResponse['result']['opening_hours']['open_now'];
-		$photo_html=$jsonResponse['result']['photos'][0]['html_attributions'][0];
 		
+		
+		
+		// dd($jsonResponse['result']['photos']);
 
 		// REVIEWS
 		$author_name=$jsonResponse['result']['reviews'][0]['author_name'];
@@ -56,7 +59,7 @@ class GuzzleController extends Controller
 		
 
 
-		return view('/places/detail', compact('name', 'address', 'phone_number', 'open_now', 'hours'));
+		return view('/places/detail', compact('name', 'address', 'phone_number', 'open_now', 'hours','map_url', 'website'));
 	}
 
 
@@ -109,6 +112,7 @@ class GuzzleController extends Controller
 		$open_now_array=[];
 		
 
+		// dd($jsonResponse);
 
 		for($i=0; $i<$loopCount-1; $i++){
 			$nameArray[$i] = $jsonResponse['results'][$i]['name'];
@@ -122,36 +126,17 @@ class GuzzleController extends Controller
 
 		}
 
-		// dd($idArray);
-		
-
-
-
 		// *** OPTIONS LIBRARY ***
-		// $location_lat = $jsonResponse['results'][0]['geometry']['location']['lat'];
-		// $location_lng = $jsonResponse['results'][0]['geometry']['location']['lng'];
 
 		$viewport_ne_lat = $jsonResponse['results'][0]['geometry']['viewport']['northeast']['lat'];
 		$viewport_ne_lng = $jsonResponse['results'][0]['geometry']['viewport']['northeast']['lng'];
-		
 		$viewport_sw_lat = $jsonResponse['results'][0]['geometry']['viewport']['southwest']['lat'];
 		$viewport_sw_lng = $jsonResponse['results'][0]['geometry']['viewport']['southwest']['lng'];
-
-
-
-
-		// $id = $jsonResponse['results'][0]['id'];
-		// $name = $jsonResponse['results'][0]['name'];
-		
-		// $opening_hours = $jsonResponse['results'][0]['opening_hours'];
 		$open_now = $jsonResponse['results'][0]['opening_hours']['open_now'];
-		// $weekday_text = $jsonResponse['results'][0]['opening_hours']['weekday_text'];
-		
 		// $photos = $jsonResponse['results'][0]['photos'];
 		$indiv_photo = $jsonResponse['results'][0]['photos'][0];
 		$indiv_photo_html_attrib = $jsonResponse['results'][0]['photos'][0]['html_attributions'][0];
 		$indiv_photo_ref = $jsonResponse['results'][0]['photos'][0]['photo_reference'];
-
 		$place_id = $jsonResponse['results'][0]['place_id'];
 
 
@@ -179,7 +164,7 @@ class GuzzleController extends Controller
 			'nameArray', 
 			'open_now',
 			'indiv_photo_html_attrib', 
-			'indiv_photo_ref', 
+			'indiv_photo_ref_array', 
 			'place_id_array', 
 			'rating', 
 			'reference', 

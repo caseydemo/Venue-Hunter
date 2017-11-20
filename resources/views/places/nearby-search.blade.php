@@ -88,6 +88,7 @@
 	@for($i=0; $i<$loopCount-1; $i++)
 	<hr>
 		<ul><h1>Name: {{ $nameArray[$i] }}  </h1></ul>
+        <ul>Photo: {{ $indiv_photo_ref[$i] }} </ul>
         <ul><strong>Address: {{ $vicinityArray[$i] }}</strong></ul>
         <ul><strong>Open Now:
         @if($open_now_array[$i]) 
