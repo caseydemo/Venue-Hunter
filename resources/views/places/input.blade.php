@@ -62,31 +62,17 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-            ul {
-                 list-style-type: none;
-            }
        		 </style>
 <body>
 
-   <a href="/"><button class="btn btn-alert">Back to search</button></a>
+<h1>Club Hunter!</h1>
 
-   <a href="{{ URL::previous() }}" class="btn btn-xs btn-default">Back</a>
-	
-	<hr>
-		<ul><h1>Name: {{ $name }}  </h1></ul>
-        <ul><strong>Address: {{ $address }}</strong></ul>
-        <ul><strong>Open Now:
-        @if($open_now) 
-            Yes</strong></ul>
-        @else
-            No</strong></ul>
-        @endif
-        <ul><strong>Hours: 
-        @for($i=0; $i<7; $i++)
-            <p>{{ $hours[$i] }}</p>
-        @endfor
+	<form action="/" method="post">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+		Lattitude: <input type="text" name="input1"><br>
+		Longitude: <input type="text" name="input2"><br>
+	   <input type="submit">
+    </form>
 
-        </strong></ul>
-        <hr>
-	
+
 </body>
