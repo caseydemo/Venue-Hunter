@@ -81,13 +81,22 @@
         @else
             No</strong></ul>
         @endif
+        <ul><img src="{{ $icon }}"/></ul>
         <ul><a href="{{ $map_url }}" target="_blank">{{$name}} on google maps</a></ul>
         <ul><a href="{{ $website }}" target="_blank">{{$name}}'s Website</a></ul>
         <ul><strong>Hours: 
         @for($i=0; $i<7; $i++)
             <p>{{ $hours[$i] }}</p>
         @endfor
-
+        <ul><h2>Reviews:</h2></ul>
+        <hr>
+        @for($i=0; $i<3; $i++)
+            <ul><h3>{{$i+1}}. By:{{ $author_name_array[$i] }}, {{ $time_description_array[$i]}}</h3></ul>
+            <ul><h4>{{ $rating_array[$i] }} Stars</h4></ul>
+            <ul>{{ $review_text_array[$i] }}</ul>
+            <hr>
+            <br>
+        @endfor
         </strong></ul>
         <hr>
 	

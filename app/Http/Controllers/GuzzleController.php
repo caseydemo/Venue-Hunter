@@ -45,21 +45,62 @@ class GuzzleController extends Controller
 		// dd($jsonResponse['result']['photos']);
 
 		// REVIEWS
+		$review_count=(count($author_name=$jsonResponse['result']['reviews'][0]));
 		$author_name=$jsonResponse['result']['reviews'][0]['author_name'];
 		$rating=$jsonResponse['result']['reviews'][0]['rating'];
 		$time_description=$jsonResponse['result']['reviews'][0]['relative_time_description'];
 		$review_text=$jsonResponse['result']['reviews'][0]['text'];
 
+		// Review ARRAY
+		for($i=0; $i<$review_count; $i++){
+
+			if(isset($jsonResponse['result']['reviews'][$i]['author_name'])){
+				$author_name_array[$i]=$jsonResponse['result']['reviews'][$i]['author_name'];
+			}
+			else{
+				$author_name_array[$i]='';
+			}
+			if(isset($jsonResponse['result']['reviews'][$i]['rating'])){
+				$rating_array[$i]=$jsonResponse['result']['reviews'][$i]['rating'];
+			}
+			else{
+				$rating_array[$i]='';
+			}
+			if(isset($jsonResponse['result']['reviews'][$i]['relative_time_description'])){
+				$time_description_array[$i]=$jsonResponse['result']['reviews'][$i]['relative_time_description'];
+			}
+			else{
+				$time_description_array[$i]='';
+			}
+			if(isset($jsonResponse['result']['reviews'][$i]['text'])){
+				$review_text_array[$i]=$jsonResponse['result']['reviews'][$i]['text'];
+			}
+			else{
+				$review_text_array[$i]='';
+			}
+		}
+
+
+
 		$map_url=$jsonResponse['result']['url'];
 		$website=$jsonResponse['result']['website'];
 
 
-
-		// dd($jsonResponse['result']);
-		
-
-
-		return view('/places/detail', compact('name', 'address', 'phone_number', 'open_now', 'hours','map_url', 'website'));
+		return view('/places/detail', compact(
+			'name', 
+			'address', 
+			'phone_number', 
+			'open_now', 
+			'hours',
+			'map_url', 
+			'website', 
+			'icon', 
+			'author_name_array', 
+			'rating_array', 
+			'time_description_array', 
+			'review_text_array',
+			'review_count'
+		));
 	}
 
 
