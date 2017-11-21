@@ -12,9 +12,118 @@ class GuzzleController extends Controller
 
 	public function getInput(Request $request){
 		
-		return view('/places/search', compact('lattitude', 'longitude'));
+		return view('/places/input');
 	}
 
+
+
+
+	public function getGeocode(Request $request){
+		
+		if(null !== $request->input('city')){
+			$city = $request->input('city');
+		}
+		else{
+			$city='';
+		}
+		if(null !== $request->input('state')){
+			$state = $request->input('state');
+		}
+		else{
+			$state='';
+		}
+		if(null !== $request->input('address')){
+			$address = $request->input('adress');
+		}
+		else{
+			$address='';
+		}
+		if(null !== $request->input('zipcode')){
+			$zipcode = $request->input('zipcode');
+		}
+		else{
+			$zipcode='';
+		}
+		$key = 'AIzaSyBnXl0SKKGNSo0BxBjsDYfPA-hIDMPtIgk';
+		$client = new Client();
+		
+		$res = $client->get('https://maps.googleapis.com/maps/api/geocode/json?' . 
+			'address=' . $address . ',+' . $city . ',+' . $state . ',+' . $zipcode . '&key=' . $key);
+		$tempJson = $res->getBody();
+		$jsonResponse = json_decode($tempJson, true);
+		$lattitude = $jsonResponse['results'][0]['geometry']['location']['lat'];
+		$longitude = $jsonResponse['results'][0]['geometry']['location']['lng'];
+
+		dd($jsonResponse);
+		
+		$jsonResponse = $this->getNearbySearch($lattitude, $longitude);
+
+		$loopCount = count($jsonResponse['results']);
+		
+		$nameArray=[];
+		$idArray=[];
+		$location_lat1_array=[];
+		$location_lng_array=[];
+		$vicinityArray=[];
+		$open_now_array=[];
+		
+
+		for($i=0; $i<$loopCount-1; $i++){
+			$nameArray[$i] = $jsonResponse['results'][$i]['name'];
+			$idArray[$i] = $jsonResponse['results'][$i]['id'];
+			$location_lat_array[$i] = $jsonResponse['results'][$i]['geometry']['location']['lat'];
+			$location_lng_array[$i] = $jsonResponse['results'][$i]['geometry']['location']['lng'];
+
+			$vicinityArray[$i] = $jsonResponse['results'][$i]['vicinity'];
+			$place_id_array[$i] = $jsonResponse['results'][$i]['place_id'];
+			$open_now_array[$i]= $jsonResponse['results'][$i]['opening_hours']['open_now'];
+
+		}
+
+
+
+		// *** OPTIONS LIBRARY ***
+
+		$viewport_ne_lat = $jsonResponse['results'][0]['geometry']['viewport']['northeast']['lat'];
+		$viewport_ne_lng = $jsonResponse['results'][0]['geometry']['viewport']['northeast']['lng'];
+		$viewport_sw_lat = $jsonResponse['results'][0]['geometry']['viewport']['southwest']['lat'];
+		$viewport_sw_lng = $jsonResponse['results'][0]['geometry']['viewport']['southwest']['lng'];
+		$open_now = $jsonResponse['results'][0]['opening_hours']['open_now'];
+		// $photos = $jsonResponse['results'][0]['photos'];
+		$indiv_photo = $jsonResponse['results'][0]['photos'][0];
+		$indiv_photo_html_attrib = $jsonResponse['results'][0]['photos'][0]['html_attributions'][0];
+		$indiv_photo_ref = $jsonResponse['results'][0]['photos'][0]['photo_reference'];
+		$place_id = $jsonResponse['results'][0]['place_id'];
+
+
+		$rating = $jsonResponse['results'][0]['rating'];
+		$reference = $jsonResponse['results'][0]['reference'];
+		$scope = $jsonResponse['results'][0]['scope'];
+		$types = $jsonResponse['results'][0]['types'];
+
+		return view('/places/display', compact(
+					'loopCount', 
+					'location_lat_array', 
+					'location_lng_array', 
+					'viewport_ne_lat', 
+					'viewport_ne_lng', 
+					'viewport_sw_lat', 
+					'viewport_sw_lng', 
+					'idArray', 
+					'nameArray', 
+					'open_now',
+					'indiv_photo_html_attrib', 
+					'indiv_photo_ref_array', 
+					'place_id_array', 
+					'rating', 
+					'reference', 
+					'scope', 
+					'types', 
+					'vicinityArray',
+					'open_now_array',
+					'jsonResponse'
+					));
+	}	
 
 	public function getDetailSearch($place_id){
 		$client = new Client();
@@ -107,26 +216,22 @@ class GuzzleController extends Controller
 
 
 
-	public function getNearbySearch(Request $request){
+	public function getNearbySearch($lattitude, $longitude){
 
 		// variable dictionary
-
-		$lattitude = $request->input('input1');
-		$longitude = $request->input('input2');
 		
 
 
-
-		$client = new Client();
-		$lat = $lattitude;
-		$long = $longitude;
-		$radius = 500;
+		$nearbyClient = new Client();
+		$lat = round($lattitude, 4);
+		$long = round($longitude, 4);
+		$radius = 5000;
 		$type = 'restaurant';
 		$keyword = 'bar';
 		$key = 'AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM';
 		
 		// api call with options
-		$res = $client->get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?' 
+		$res = $nearbyClient->get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?' 
 			. 'location=' . $lat . ',' . $long . '&' 
 			. 'radius=' . $radius . '&' 
 			. 'type=' . $type . '&' 
@@ -134,87 +239,8 @@ class GuzzleController extends Controller
 			. 'key=' . $key);
 
 		$tempJson = $res->getBody();
-
-
-
 		$jsonResponse = json_decode($tempJson, true);
-
-
-		// dd($jsonResponse['results'][0]);
-
-
-		$loopCount = count($jsonResponse['results']);
-		
-		$nameArray=[];
-		$idArray=[];
-		$location_lat1_array=[];
-		$location_lng_array=[];
-		$vicinityArray=[];
-		$open_now_array=[];
-		
-
-		// dd($jsonResponse);
-
-		for($i=0; $i<$loopCount-1; $i++){
-			$nameArray[$i] = $jsonResponse['results'][$i]['name'];
-			$idArray[$i] = $jsonResponse['results'][$i]['id'];
-			$location_lat_array[$i] = $jsonResponse['results'][$i]['geometry']['location']['lat'];
-			$location_lng_array[$i] = $jsonResponse['results'][$i]['geometry']['location']['lng'];
-
-			$vicinityArray[$i] = $jsonResponse['results'][$i]['vicinity'];
-			$open_now_array[$i] = $jsonResponse['results'][$i]['opening_hours']['open_now'];
-			$place_id_array[$i] = $jsonResponse['results'][$i]['place_id'];
-
-		}
-
-		// *** OPTIONS LIBRARY ***
-
-		$viewport_ne_lat = $jsonResponse['results'][0]['geometry']['viewport']['northeast']['lat'];
-		$viewport_ne_lng = $jsonResponse['results'][0]['geometry']['viewport']['northeast']['lng'];
-		$viewport_sw_lat = $jsonResponse['results'][0]['geometry']['viewport']['southwest']['lat'];
-		$viewport_sw_lng = $jsonResponse['results'][0]['geometry']['viewport']['southwest']['lng'];
-		$open_now = $jsonResponse['results'][0]['opening_hours']['open_now'];
-		// $photos = $jsonResponse['results'][0]['photos'];
-		$indiv_photo = $jsonResponse['results'][0]['photos'][0];
-		$indiv_photo_html_attrib = $jsonResponse['results'][0]['photos'][0]['html_attributions'][0];
-		$indiv_photo_ref = $jsonResponse['results'][0]['photos'][0]['photo_reference'];
-		$place_id = $jsonResponse['results'][0]['place_id'];
-
-
-		$rating = $jsonResponse['results'][0]['rating'];
-		$reference = $jsonResponse['results'][0]['reference'];
-		$scope = $jsonResponse['results'][0]['scope'];
-		$types = $jsonResponse['results'][0]['types'];
-		// $vicinity = $jsonResponse['results'][0]['vicinity'];
-
-
-
-		// dd($opening_hours_array);
-		 // dd($types);
-
-
-		return view('/places/display', compact(
-			'loopCount', 
-			'location_lat_array', 
-			'location_lng_array', 
-			'viewport_ne_lat', 
-			'viewport_ne_lng', 
-			'viewport_sw_lat', 
-			'viewport_sw_lng', 
-			'idArray', 
-			'nameArray', 
-			'open_now',
-			'indiv_photo_html_attrib', 
-			'indiv_photo_ref_array', 
-			'place_id_array', 
-			'rating', 
-			'reference', 
-			'scope', 
-			'types', 
-			'vicinityArray',
-			'open_now_array',
-			'jsonResponse'
-			));
+		return ($jsonResponse);
 	}
 
 	

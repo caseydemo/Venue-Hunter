@@ -14,9 +14,9 @@ require __DIR__ . '/../vendor/autoload.php';
 
 Route::get('/', 'GuzzleController@getInput');
 
-Route::post('/geocode', 'GuzzleController@getGeocode');
+Route::post('/', 'GuzzleController@getGeocode');
 
-Route::post('/nearby', 'GuzzleController@getNearbySearch');
+// Route::show('/places/display', 'GuzzleController@getNearbySearch');
 
 Route::get('/detail/{place_id}', 'GuzzleController@getDetailSearch');
 
