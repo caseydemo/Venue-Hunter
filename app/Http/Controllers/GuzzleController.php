@@ -41,6 +41,7 @@ class GuzzleController extends Controller
 
 	public function getGeocode(Request $request){
 		
+		// *** GEOCODE INPUT  ***
 		if(null !== $request->input('city')){
 			$city = $request->input('city');
 		}
@@ -66,56 +67,84 @@ class GuzzleController extends Controller
 			$zipcode='';
 		}
 
-		// NEARBY SEARCH API
+		// *** GEOSEARCH API ***
 		$key = 'AIzaSyBnXl0SKKGNSo0BxBjsDYfPA-hIDMPtIgk';
-		$client = new Client();
-		$res = $client->get('https://maps.googleapis.com/maps/api/geocode/json?' . 
+		$geoClient = new Client();
+		$geoRes = $geoClient->get('https://maps.googleapis.com/maps/api/geocode/json?' . 
 			'address=' . $address . ',+' . $city . ',+' . $state . ',+' . $zipcode . '&key=' . $key);
-		$tempJson = $res->getBody();
-		$jsonResponse = json_decode($tempJson, true);
-		$lattitude = $jsonResponse['results'][0]['geometry']['location']['lat'];
-		$longitude = $jsonResponse['results'][0]['geometry']['location']['lng'];
-		$keyword = $request->input('keyword');
-		$jsonResponse = $this->getNearbySearch($lattitude, $longitude, $keyword);
-		// dd($jsonResponse);
 
-		$loopCount = count($jsonResponse['results']);
-		$nameArray=[];
-		$idArray=[];
-		$location_lat1_array=[];
-		$location_lng_array=[];
-		$vicinityArray=[];
-		$open_now_array=[];
-		
+		$tempGeoJSON = $geoRes->getBody();
+
+		$geoJSON = json_decode($tempGeoJSON, true);
+
+		$lattitude = $geoJSON['results'][0]['geometry']['location']['lat'];
+		$longitude = $geoJSON['results'][0]['geometry']['location']['lng'];
+
+		$keyword = $request->input('keyword');
+
+
+
+		// *** NEARBY SEARCH ***
+
+		$nearbySearchJSON = $this->getNearbySearch($lattitude, $longitude, $keyword);
+
+		$loopCount = count($nearbySearchJSON['results']);
+
+
+	// *** FOR LOOP FOR LOOP FOR LOOP ***
 
 		for($i=0; $i<$loopCount-1; $i++){
 			
-			if(null !== $jsonResponse['results'][$i]['name']){
-				$nameArray[$i] = $jsonResponse['results'][$i]['name'];
+			if(null !== $nearbySearchJSON['results'][$i]['name']){
+				$nameArray[$i] = $nearbySearchJSON['results'][$i]['name'];
 			}
 			else{
 				$nameArray[$i]='';
 			}
 			
+		// *** PHOTO FUNCTION ***
 
-
-
-
-
-
-
-			$idArray[$i] = $jsonResponse['results'][$i]['id'];
-			$location_lat_array[$i] = $jsonResponse['results'][$i]['geometry']['location']['lat'];
-			$location_lng_array[$i] = $jsonResponse['results'][$i]['geometry']['location']['lng'];
-
-			$vicinityArray[$i] = $jsonResponse['results'][$i]['vicinity'];
-			$place_id_array[$i] = $jsonResponse['results'][$i]['place_id'];
-			
-			if( ! empty( $jsonResponse['results'][$i]['opening_hours'] ) && 
-				$jsonResponse['results'][$i]['opening_hours'] !== null 
+			if(!empty($nearbySearchJSON['results'][$i]['photos'])){
+				$photoref=$nearbySearchJSON['results'][$i]['photos'][0]['photo_reference'];
+				$photo_array[$i] = $this->getPhoto($photoref);	
+			}
+			else{
+				$photo_array[$i]=0;
+			}
+			if(!empty($nearbySearchJSON['results'][$i]['id'])){
+				$idArray[$i] = $nearbySearchJSON['results'][$i]['id'];
+			}
+			else{
+				$idArray[$i] = '';
+			}
+			if(!empty($nearbySearchJSON['results'][$i]['geometry']['location']['lat'])){
+				$location_lat_array[$i] = $nearbySearchJSON['results'][$i]['geometry']['location']['lat'];
+			}
+			else{
+				$location_lat_array[$i]='';
+			}
+			if(!empty($nearbySearchJSON['results'][$i]['geometry']['location']['lng'])){
+				$location_lng_array[$i] = $nearbySearchJSON['results'][$i]['geometry']['location']['lng'];
+			}
+			else{
+				$location_lng_array[$i]='';
+			}
+			if(!empty($nearbySearchJSON['results'][$i]['vicinity'])){
+				$vicinityArray[$i] = $nearbySearchJSON['results'][$i]['vicinity'];
+			}
+			else{
+				$vicinityArray[$i]='';
+			}
+			if(!empty($nearbySearchJSON['results'][$i]['place_id'])){
+				$place_id_array[$i] = $nearbySearchJSON['results'][$i]['place_id'];
+			}
+			else{
+				$place_id_array[$i]='';
+			}
+			if( ! empty( $nearbySearchJSON['results'][$i]['opening_hours'] ) && 
+				$nearbySearchJSON['results'][$i]['opening_hours'] !== null 
 			) {
-
-				$open_now_array[$i] = $jsonResponse['results'][$i]['opening_hours'];
+				$open_now_array[$i] = $nearbySearchJSON['results'][$i]['opening_hours'];
 				if($open_now_array[$i]){
 					$open_now_array[$i]='Yes';
 				}
@@ -130,6 +159,13 @@ class GuzzleController extends Controller
 
 
 		}
+
+		dd($photo_array);
+
+	// *** END OF FOR LOOP END OF FOR LOOP END OF FOR LOOP ***
+
+
+
 
 
 		// *** OPTIONS LIBRARY ***
@@ -303,22 +339,13 @@ class GuzzleController extends Controller
 		$tempJson = $res->getBody();
 		$jsonResponse = json_decode($tempJson, true);
 
-		// dd($jsonResponse);
-
-		$photo_array=[];
-		
+	
 		// dd(count($jsonResponse));
 
 		$counter = count($jsonResponse);
 
 		for($i=0; $i<$counter; $i++){
-			if(!empty($jsonResponse['results'][$i]['photos'])){
-				$photoref=$jsonResponse['results'][$i]['photos'][0]['photo_reference'];
-				$photo_array[$i] = $this->getPhoto($photoref);	
-			}
-			else{
-				$photo_array[$i]=0;
-			}
+			
 
 			if( ! empty( $jsonResponse['results'][$i]['photos'][0]['html_attributions'][0] ) && 
 						$jsonResponse['results'][$i]['photos'][0]['html_attributions'][0] !== null 
