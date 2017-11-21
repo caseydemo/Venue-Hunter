@@ -16,6 +16,27 @@ class GuzzleController extends Controller
 	}
 
 
+	public function getPhoto($photoref){
+		// dd($photoref);
+		//key1: AIzaSyBpgfAhYCQXyFHCLiCXu1hgVTltxH4o-a0
+		//key2: AIzaSyBnXl0SKKGNSo0BxBjsDYfPA-hIDMPtIgk	
+		//key3: AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM
+		$key='AIzaSyBpgfAhYCQXyFHCLiCXu1hgVTltxH4o-a0';
+		$client = new Client();
+		// dd($photoref); // PHOTOREF EXISTS HERE
+
+		$res = $client->get('https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=' . $photoref . '&key=' . $key);
+
+		// dd($res);
+		$tempJson = $res->getBody();
+		// dd($tempJson);
+		$jsonResponse = json_decode($tempJson, true);
+		// dd($jsonResponse);
+		// dd($photoref);
+
+		return ($jsonResponse);
+	}
+
 
 
 	public function getGeocode(Request $request){
@@ -44,22 +65,21 @@ class GuzzleController extends Controller
 		else{
 			$zipcode='';
 		}
+
+		// NEARBY SEARCH API
 		$key = 'AIzaSyBnXl0SKKGNSo0BxBjsDYfPA-hIDMPtIgk';
 		$client = new Client();
-		
 		$res = $client->get('https://maps.googleapis.com/maps/api/geocode/json?' . 
 			'address=' . $address . ',+' . $city . ',+' . $state . ',+' . $zipcode . '&key=' . $key);
 		$tempJson = $res->getBody();
 		$jsonResponse = json_decode($tempJson, true);
 		$lattitude = $jsonResponse['results'][0]['geometry']['location']['lat'];
 		$longitude = $jsonResponse['results'][0]['geometry']['location']['lng'];
-
-		dd($jsonResponse);
-		
-		$jsonResponse = $this->getNearbySearch($lattitude, $longitude);
+		$keyword = $request->input('keyword');
+		$jsonResponse = $this->getNearbySearch($lattitude, $longitude, $keyword);
+		// dd($jsonResponse);
 
 		$loopCount = count($jsonResponse['results']);
-		
 		$nameArray=[];
 		$idArray=[];
 		$location_lat1_array=[];
@@ -69,39 +89,64 @@ class GuzzleController extends Controller
 		
 
 		for($i=0; $i<$loopCount-1; $i++){
-			$nameArray[$i] = $jsonResponse['results'][$i]['name'];
+			
+			if(null !== $jsonResponse['results'][$i]['name']){
+				$nameArray[$i] = $jsonResponse['results'][$i]['name'];
+			}
+			else{
+				$nameArray[$i]='';
+			}
+			
+
+
+
+
+
+
+
 			$idArray[$i] = $jsonResponse['results'][$i]['id'];
 			$location_lat_array[$i] = $jsonResponse['results'][$i]['geometry']['location']['lat'];
 			$location_lng_array[$i] = $jsonResponse['results'][$i]['geometry']['location']['lng'];
 
 			$vicinityArray[$i] = $jsonResponse['results'][$i]['vicinity'];
 			$place_id_array[$i] = $jsonResponse['results'][$i]['place_id'];
-			$open_now_array[$i]= $jsonResponse['results'][$i]['opening_hours']['open_now'];
+			
+			if( ! empty( $jsonResponse['results'][$i]['opening_hours'] ) && 
+				$jsonResponse['results'][$i]['opening_hours'] !== null 
+			) {
+
+				$open_now_array[$i] = $jsonResponse['results'][$i]['opening_hours'];
+				if($open_now_array[$i]){
+					$open_now_array[$i]='Yes';
+				}
+				else{
+					$open_now_array[$i]='No';
+				}
+			}
+			else{
+				$open_now_array[$i]='N/A';
+			}
+
+
 
 		}
 
 
-
 		// *** OPTIONS LIBRARY ***
 
-		$viewport_ne_lat = $jsonResponse['results'][0]['geometry']['viewport']['northeast']['lat'];
-		$viewport_ne_lng = $jsonResponse['results'][0]['geometry']['viewport']['northeast']['lng'];
-		$viewport_sw_lat = $jsonResponse['results'][0]['geometry']['viewport']['southwest']['lat'];
-		$viewport_sw_lng = $jsonResponse['results'][0]['geometry']['viewport']['southwest']['lng'];
-		$open_now = $jsonResponse['results'][0]['opening_hours']['open_now'];
-		// $photos = $jsonResponse['results'][0]['photos'];
-		$indiv_photo = $jsonResponse['results'][0]['photos'][0];
-		$indiv_photo_html_attrib = $jsonResponse['results'][0]['photos'][0]['html_attributions'][0];
-		$indiv_photo_ref = $jsonResponse['results'][0]['photos'][0]['photo_reference'];
-		$place_id = $jsonResponse['results'][0]['place_id'];
+		// $indiv_photo = $jsonResponse['results'][0]['photos'][0];
+		// $indiv_photo_html_attrib = $jsonResponse['results'][0]['photos'][0]['html_attributions'][0];
+		// $indiv_photo_ref = $jsonResponse['results'][0]['photos'][0]['photo_reference'];
+		// $place_id = $jsonResponse['results'][0]['place_id'];
 
 
-		$rating = $jsonResponse['results'][0]['rating'];
-		$reference = $jsonResponse['results'][0]['reference'];
-		$scope = $jsonResponse['results'][0]['scope'];
-		$types = $jsonResponse['results'][0]['types'];
+		// $rating = $jsonResponse['results'][0]['rating'];
+		// $reference = $jsonResponse['results'][0]['reference'];
+		// $scope = $jsonResponse['results'][0]['scope'];
+		// $types = $jsonResponse['results'][0]['types'];
 
 		return view('/places/display', compact(
+					
 					'loopCount', 
 					'location_lat_array', 
 					'location_lng_array', 
@@ -112,7 +157,7 @@ class GuzzleController extends Controller
 					'idArray', 
 					'nameArray', 
 					'open_now',
-					'indiv_photo_html_attrib', 
+					'photo', 
 					'indiv_photo_ref_array', 
 					'place_id_array', 
 					'rating', 
@@ -126,32 +171,40 @@ class GuzzleController extends Controller
 	}	
 
 	public function getDetailSearch($place_id){
-		$client = new Client();
+		$detail_client = new Client();
 		$hours=[];
-		
-		
-		$res = $client->get('https://maps.googleapis.com/maps/api/place/details/json?' 
+		$res = $detail_client->get('https://maps.googleapis.com/maps/api/place/details/json?' 
 			. 'placeid=' . $place_id . '&' 
 			. 'key=AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM');
 		$tempJson = $res->getBody();
 		$jsonResponse = json_decode($tempJson, true);
-		$loopCount = count($jsonResponse['result']);
 
+		
+		// dd($photo);	
+		
+		$loopCount = count($jsonResponse['result']);
+		
 		$address = $jsonResponse['result']['formatted_address'];
-		$phone_number = $jsonResponse['result']['formatted_phone_number'];
+		
+		if(isset($jsonResponse['result']['formatted_phone_number'])){
+			$phone_number = $jsonResponse['result']['formatted_phone_number'];
+		}
+		else{
+			$phone_number = 'N/A';
+		}
+		
 		$icon=$jsonResponse['result']['icon'];
+		
 		$name=$jsonResponse['result']['name'];
 		
 
-		// Store hours
-		for($i=0; $i<7; $i++){
-			$hours[$i]=$jsonResponse['result']['opening_hours']['weekday_text'][$i]; // array
+		if(isset($jsonResponse['result']['opening_hours'])){
+			// Store hours
+			for($i=0; $i<7; $i++){
+				$hours[$i]=$jsonResponse['result']['opening_hours']['weekday_text'][$i]; 
+				$open_now=$jsonResponse['result']['opening_hours']['open_now'];
+			}
 		}
-		$open_now=$jsonResponse['result']['opening_hours']['open_now'];
-		
-		
-		
-		// dd($jsonResponse['result']['photos']);
 
 		// REVIEWS
 		$review_count=(count($author_name=$jsonResponse['result']['reviews'][0]));
@@ -189,10 +242,15 @@ class GuzzleController extends Controller
 			}
 		}
 
+			if(isset($jsonResponse['result']['url'])){
+				$website=$jsonResponse['result']['url'];
+			}
+			else{
+				$website='';
+			}
 
 
 		$map_url=$jsonResponse['result']['url'];
-		$website=$jsonResponse['result']['website'];
 
 
 		return view('/places/detail', compact(
@@ -216,7 +274,7 @@ class GuzzleController extends Controller
 
 
 
-	public function getNearbySearch($lattitude, $longitude){
+	public function getNearbySearch($lattitude, $longitude, $keyword){
 
 		// variable dictionary
 		
@@ -226,8 +284,12 @@ class GuzzleController extends Controller
 		$lat = round($lattitude, 4);
 		$long = round($longitude, 4);
 		$radius = 5000;
-		$type = 'restaurant';
-		$keyword = 'bar';
+		$type = 'night_club';
+		
+		if(empty($keyword)){
+			$keyword = 'bar';
+		}
+		// $keyword = 'bar';
 		$key = 'AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM';
 		
 		// api call with options
@@ -240,6 +302,40 @@ class GuzzleController extends Controller
 
 		$tempJson = $res->getBody();
 		$jsonResponse = json_decode($tempJson, true);
+
+		// dd($jsonResponse);
+
+		$photo_array=[];
+		
+		// dd(count($jsonResponse));
+
+		$counter = count($jsonResponse);
+
+		for($i=0; $i<$counter; $i++){
+			if(!empty($jsonResponse['results'][$i]['photos'])){
+				$photoref=$jsonResponse['results'][$i]['photos'][0]['photo_reference'];
+				$photo_array[$i] = $this->getPhoto($photoref);	
+			}
+			else{
+				$photo_array[$i]=0;
+			}
+
+			if( ! empty( $jsonResponse['results'][$i]['photos'][0]['html_attributions'][0] ) && 
+						$jsonResponse['results'][$i]['photos'][0]['html_attributions'][0] !== null 
+					) {
+
+						$photo[$i] = $jsonResponse['results'][$i]['photos'][0]['html_attributions'][0];
+			}
+			else{
+						$photo[$i]='https://www.hasslefreeclipart.com/clipart_compusers/images/error.gif';
+					}
+
+		}
+		
+		// dd($photo_array);
+
+
+
 		return ($jsonResponse);
 	}
 

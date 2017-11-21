@@ -69,10 +69,8 @@
 
 <form action="/" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <ul><strong>Address: <input type="text" name="address"><br></strong></ul>
         <ul><strong>City: <input type="text" name="city"><br></strong></ul>
         <ul><strong>State: <input type="text" name="state"><br></strong></ul>
-        <ul><strong>Zip Code: <input type="text" name="zipcode"><br></strong></ul>        
         <ul><strong>Keyword: <input type="text" name="keyword"><br></strong></ul>
         <input type="submit">
     </form>

@@ -70,7 +70,7 @@
 
    <a href="/"><button class="btn btn-alert">Back to search</button></a>
 
-   <a href="{{ URL::previous() }}" class="btn btn-xs btn-default">Back</a>
+   <a href="/display"><button class="btn btn-xs btn-default">Back</button></a>
 	
 	<hr>
 		<ul><h1>Name: {{ $name }}  </h1></ul>
@@ -81,7 +81,7 @@
         @else
             No</strong></ul>
         @endif
-        <ul><img src="{{ $icon }}"/></ul>
+        <ul><img src="{{ $icon }}"/>Phone #: {{ $phone_number }}</ul>
         <ul><a href="{{ $map_url }}" target="_blank">{{$name}} on google maps</a></ul>
         <ul><a href="{{ $website }}" target="_blank">{{$name}}'s Website</a></ul>
         <ul><strong>Hours: 
