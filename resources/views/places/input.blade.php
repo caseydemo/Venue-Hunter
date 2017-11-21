@@ -67,7 +67,7 @@
 
 <h1>Club Hunter!</h1>
 
-	<form action="/" method="post">
+	<form action="/geocode" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 		Lattitude: <input type="text" name="input1"><br>
 		Longitude: <input type="text" name="input2"><br>

@@ -12,14 +12,11 @@ require __DIR__ . '/../vendor/autoload.php';
 |
 */
 
-
-
-// Route::resource('/places', 'PlacesController');
-
-Route::post('/', 'GuzzleController@getNearbySearch');
-
 Route::get('/', 'GuzzleController@getInput');
+
+Route::post('/geocode', 'GuzzleController@getGeocode');
+
+Route::post('/nearby', 'GuzzleController@getNearbySearch');
 
 Route::get('/detail/{place_id}', 'GuzzleController@getDetailSearch');
 
-// Route::get('/lat', 'GuzzleController@getInput');
