@@ -20,3 +20,7 @@ Route::post('/', 'GuzzleController@getGeocode');
 
 Route::get('/detail/{place_id}', 'GuzzleController@getDetailSearch');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
