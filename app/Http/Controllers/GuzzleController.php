@@ -16,29 +16,6 @@ class GuzzleController extends Controller
 	}
 
 
-	public function getPhoto($photoref){
-		// dd($photoref);
-		//key1: AIzaSyBpgfAhYCQXyFHCLiCXu1hgVTltxH4o-a0
-		//key2: AIzaSyBnXl0SKKGNSo0BxBjsDYfPA-hIDMPtIgk	
-		//key3: AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM
-		$key='AIzaSyBpgfAhYCQXyFHCLiCXu1hgVTltxH4o-a0';
-		$client = new Client();
-		// dd($photoref); // PHOTOREF EXISTS HERE
-
-		$res = $client->get('https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=' . $photoref . '&key=' . $key);
-
-		// dd($res);
-		$tempJson = $res->getBody();
-		// dd($tempJson);
-		$jsonResponse = json_decode($tempJson, true);
-		// dd($jsonResponse);
-		// dd($photoref);
-
-		return ($jsonResponse);
-	}
-
-
-
 	public function getGeocode(Request $request){
 		
 		// *** GEOCODE INPUT  ***
@@ -105,11 +82,10 @@ class GuzzleController extends Controller
 		// *** PHOTO FUNCTION ***
 
 			if(!empty($nearbySearchJSON['results'][$i]['photos'])){
-				$photoref=$nearbySearchJSON['results'][$i]['photos'][0]['photo_reference'];
-				$photo_array[$i] = $this->getPhoto($photoref);	
+				$photo_ref_array[$i]=$nearbySearchJSON['results'][$i]['photos'][0]['photo_reference'];
 			}
 			else{
-				$photo_array[$i]=0;
+				$photoref_array[$i]=0;
 			}
 			if(!empty($nearbySearchJSON['results'][$i]['id'])){
 				$idArray[$i] = $nearbySearchJSON['results'][$i]['id'];
@@ -160,26 +136,15 @@ class GuzzleController extends Controller
 
 		}
 
-		dd($photo_array);
+		// dd($photo_ref_array);
+
+
+
+		$imageArray = $this->getPhoto($photo_ref_array);	
+
+		// dd($photo_array);
 
 	// *** END OF FOR LOOP END OF FOR LOOP END OF FOR LOOP ***
-
-
-
-
-
-		// *** OPTIONS LIBRARY ***
-
-		// $indiv_photo = $jsonResponse['results'][0]['photos'][0];
-		// $indiv_photo_html_attrib = $jsonResponse['results'][0]['photos'][0]['html_attributions'][0];
-		// $indiv_photo_ref = $jsonResponse['results'][0]['photos'][0]['photo_reference'];
-		// $place_id = $jsonResponse['results'][0]['place_id'];
-
-
-		// $rating = $jsonResponse['results'][0]['rating'];
-		// $reference = $jsonResponse['results'][0]['reference'];
-		// $scope = $jsonResponse['results'][0]['scope'];
-		// $types = $jsonResponse['results'][0]['types'];
 
 		return view('/places/display', compact(
 					
@@ -206,19 +171,38 @@ class GuzzleController extends Controller
 					));
 	}	
 
+	public function getPhoto($photoref_array){
+		$refCount = count($photoref_array);
+		$imageArray=[];
+		for($i=0; $i<$refCount-1; $i++){
+			if(!empty($photoref_array[$i])){
+				$key='AIzaSyBpgfAhYCQXyFHCLiCXu1hgVTltxH4o-a0';
+				$client = new Client();
+				$res = $client->get('https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=' . $photoref_array[$i] . '&key=' . $key);
+				$tempJson = $res->getBody();
+				$jsonResponse = json_decode($tempJson, true);
+			}
+			else{
+				$i++;
+			}
+		}
+		dd($jsonResponse);
+		return ($jsonResponse);
+	}
+
+
 	public function getDetailSearch($place_id){
 		$detail_client = new Client();
 		$hours=[];
 		$res = $detail_client->get('https://maps.googleapis.com/maps/api/place/details/json?' 
 			. 'placeid=' . $place_id . '&' 
 			. 'key=AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM');
+		
 		$tempJson = $res->getBody();
+		
 		$jsonResponse = json_decode($tempJson, true);
 
-		
-		// dd($photo);	
-		
-		$loopCount = count($jsonResponse['result']);
+		$loopCount = count($jsonResponse['result']);		
 		
 		$address = $jsonResponse['result']['formatted_address'];
 		
