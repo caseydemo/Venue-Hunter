@@ -88,16 +88,19 @@
         @for($i=0; $i<7; $i++)
             <p>{{ $hours[$i] }}</p>
         @endfor
-        <ul><h2>Reviews:</h2></ul>
-        <hr>
-        @for($i=0; $i<3; $i++)
-            <ul><h3>{{$i+1}}. By:{{ $author_name_array[$i] }}, {{ $time_description_array[$i]}}</h3></ul>
-            <ul><h4>{{ $rating_array[$i] }} Stars</h4></ul>
-            <ul>{{ $review_text_array[$i] }}</ul>
+
+        @if($review_bool)
+            <ul><h2>Reviews:</h2></ul>
             <hr>
-            <br>
-        @endfor
-        </strong></ul>
-        <hr>
+            @for($i=0; $i<3; $i++)
+                <ul><h3>{{$i+1}}. By:{{ $author_name_array[$i] }}, {{ $time_description_array[$i]}}</h3></ul>
+                <ul><h4>{{ $rating_array[$i] }} Stars</h4></ul>
+                <ul>{{ $review_text_array[$i] }}</ul>
+                <hr>
+                <br>
+            @endfor
+            </strong></ul>
+            <hr>
+        @endif
 	
 </body>
