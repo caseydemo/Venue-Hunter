@@ -43,12 +43,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/messages') }}">Inbox</a></li>
-                        <li><a href="{{ url('/messages/starred') }}">Starred</a></li>
-                        <li><a href="{{ url('/messages/sent') }}">Sent</a></li>
-                        <li><a href="{{ url('/messages/drafts') }}">Drafts</a></li>
-                        <li><a href="{{ url('/messages/trash') }}">Trash</a></li>
-                        <li><a href="{{ url('/messages/create') }}"><button class="btn btn-xs btn-default">New</button></a></li>
+                        <li><a href="{{ url('/messages') }}">Saved Searches</a></li>
+                        <li><a href="{{ url('/') }}"><button class="btn btn-xs btn-default">New Search</button></a></li>
 
                     </ul>
 

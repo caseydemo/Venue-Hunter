@@ -1,77 +1,16 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app-panel')
 
-        <title>Laravel</title>
+@section('title')
+Let's Find a Venue
+@endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-            ul {
-                 list-style-type: none;
-            }
-       		 </style>
+@section('content')
 <body>
 
-   <a href="/"><button class="btn btn-alert">Back to search</button></a>
+   
 
-   <a href="/display"><button class="btn btn-xs btn-default">Back</button></a>
-	
+<button class="btn btn-alert" onclick="history.go(-1);">Back to Search</button>
+
 	<hr>
 		<ul><h1>Name: {{ $name }}  </h1></ul>
         <ul><strong>Address: {{ $address }}</strong></ul>
@@ -84,11 +23,15 @@
         <ul><img src="{{ $icon }}"/>Phone #: {{ $phone_number }}</ul>
         <ul><a href="{{ $map_url }}" target="_blank">{{$name}} on google maps</a></ul>
         <ul><a href="{{ $website }}" target="_blank">{{$name}}'s Website</a></ul>
-        <ul><strong>Hours: 
-        @for($i=0; $i<7; $i++)
-            <p>{{ $hours[$i] }}</p>
-        @endfor
-
+        @if($hours=!null)
+            <ul><strong>Hours:</ul></strong> 
+            @for($i=0; $i<7; $i++)
+                <p>{{ $hours[$i] }}</p>
+            @endfor
+        @else
+            <ul><strong> N/A </ul></strong>
+        @endif
+        </strong>
         @if($review_bool)
             <ul><h2>Reviews:</h2></ul>
             <hr>
@@ -104,3 +47,4 @@
         @endif
 	
 </body>
+@endsection

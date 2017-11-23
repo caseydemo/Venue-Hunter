@@ -12,15 +12,18 @@ require __DIR__ . '/../vendor/autoload.php';
 |
 */
 
-Route::get('/', 'GuzzleController@getInput');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+// Route::get('/', 'GuzzleController@getInput');
 
 Route::post('/', 'GuzzleController@getGeocode');
 
-// Route::show('/places/display', 'GuzzleController@getNearbySearch');
+Route::resource('/places', 'GuzzleController');
 
 Route::get('/detail/{place_id}', 'GuzzleController@getDetailSearch');
-
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

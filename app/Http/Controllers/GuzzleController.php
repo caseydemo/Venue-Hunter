@@ -10,7 +10,7 @@ class GuzzleController extends Controller
 {
 
 
-	public function getInput(Request $request){
+	public function show(Request $request){
 		
 		return view('/places/input');
 	}
@@ -64,6 +64,8 @@ class GuzzleController extends Controller
 		// *** NEARBY SEARCH ***
 
 		$nearbySearchJSON = $this->getNearbySearch($lattitude, $longitude, $keyword);
+
+		// dd($nearbySearchJSON);
 
 		$loopCount = count($nearbySearchJSON['results']);
 
