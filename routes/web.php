@@ -20,10 +20,10 @@ Auth::routes();
 
 // Route::get('/', 'GuzzleController@getInput');
 
-Route::post('/', 'GuzzleController@getGeocode');
+Route::post('/', 'SearchController@getGeocode');
 
-Route::resource('/places', 'GuzzleController');
+Route::resource('/places', 'SearchController');
 
-Route::get('/detail/{place_id}', 'GuzzleController@getDetailSearch');
+Route::get('/detail/{place_id}', 'SearchController@getDetailSearch');
 
 Route::get('/home', 'HomeController@index')->name('home');

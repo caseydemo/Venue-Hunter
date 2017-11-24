@@ -334,5 +334,11 @@ class GuzzleController extends Controller
 		return ($jsonResponse);
 	}
 
-	
+	public function store(Request $request)
+    {
+    	return 'lol';
+        // $message = new \App\Search;
+        // return redirect('/places/itworked');
+    
+	}
 }

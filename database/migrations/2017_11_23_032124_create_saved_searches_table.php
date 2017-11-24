@@ -15,10 +15,10 @@ class CreateSavedSearchesTable extends Migration
     {
         Schema::create('searches', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('search_id')->unsigned();
+            $table->text('city')->nullable();
             $table->double('lattitude', 8, 4);
             $table->double('longitude', 8, 4);
-            $table->times$table->double('column', 15, 8);tamps();
+            $table->timestamps();
         });
     }
 
@@ -30,5 +30,6 @@ class CreateSavedSearchesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('searches');
+
     }
 }
