@@ -43,10 +43,10 @@ class SearchController extends Controller
         $search->lattitude = $request->input('lattitude');
         $search->longitude = $request->input('longitude');
         $search->searched_at = Carbon::now()->timezone('America/New_York')->toDayDateTimeString();
-
+        // dd($search->city);
         $search -> save();
 
-        return redirect('/places/display');    
+        return redirect('/home');    
     }
 
     /**
@@ -57,7 +57,15 @@ class SearchController extends Controller
      */
     public function show($id)
     {
-        return view('/places/input');
+
+        // $recent_searches = \App\Search::get();
+        // $recent_city = $recent_searches[0]['attributes']['city'];
+        // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
+        // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
+
+        // dd($recent_city);
+
+        // return view('/places/input', compact('$recent_city', '$recent_keyword', '$recent_search_timestamp'));
     }
 
     /**
@@ -207,6 +215,10 @@ class SearchController extends Controller
                 $open_now_array[$i]='N/A';
             }
 
+        // $recent_searches = \App\Search::get();
+        // $recent_city = $recent_searches[0]['attributes']['city'];
+        // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
+        // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
 
 
         }
@@ -216,6 +228,9 @@ class SearchController extends Controller
 
         return view('/places/display', compact(
                     
+                    'recent_search_timestamp',
+                    'recent_keyword',
+                    'recent_city',
                     'keyword',
                     'searchDate',
                     'cityName',

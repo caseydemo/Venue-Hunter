@@ -2,7 +2,7 @@
 
 @section('title')
 Let's Find a Venue
-<a href="/"><button class="btn btn-alert">Back to search</button></a>
+<a href="/home"><button class="btn btn-alert">Back to search</button></a>
 
 @endsection
 
