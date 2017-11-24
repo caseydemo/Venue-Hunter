@@ -16,8 +16,10 @@ class CreateSavedSearchesTable extends Migration
         Schema::create('searches', function (Blueprint $table) {
             $table->increments('id');
             $table->text('city')->nullable();
+            $table->string('keyword');
             $table->double('lattitude', 8, 4);
             $table->double('longitude', 8, 4);
+            $table->datetime('searched_at')->nullable();
             $table->timestamps();
         });
     }

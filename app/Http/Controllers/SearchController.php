@@ -39,8 +39,10 @@ class SearchController extends Controller
            
         $search = new \App\Search;
         $search->city= $request->input('city');
+        $search->keyword = $request->input('keyword');
         $search->lattitude = $request->input('lattitude');
         $search->longitude = $request->input('longitude');
+        $search->searched_at = Carbon::now()->timezone('America/New_York')->toDayDateTimeString();
 
         $search -> save();
 
@@ -214,6 +216,7 @@ class SearchController extends Controller
 
         return view('/places/display', compact(
                     
+                    'keyword',
                     'searchDate',
                     'cityName',
                     'lattitude',

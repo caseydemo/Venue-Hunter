@@ -10,12 +10,15 @@ Let's Find a Venue
     <form class="form-horizontal" method="post" action="/places">
         <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
         <input type="hidden" name="city" value="{{ $cityName }}"> 
+        <input type="hidden" name="keyword" value="{{ $keyword }}"> 
         <input type="hidden" name="lattitude" value="{{ $lattitude }}">
         <input type="hidden" name="longitude" value="{{ $longitude }}">
          <button type="submit" name="button" value="save" class="btn btn-md btn-default">Save Search</button>
     </form>
 
     <body>
+
+        {{ $keyword }}
         <h4>Search Results for {{ $cityName }}</h4>
         <h4>{{ $searchDate }}</h4>
 
