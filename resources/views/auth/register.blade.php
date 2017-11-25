@@ -3,9 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+        <div class="jumbotron vertical-center">
+                <h1 class="display-3">VENUE HUNTER</h1>
+                <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
+                    <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -70,8 +71,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
         </div>
-    </div>
-</div>
+
 @endsection
