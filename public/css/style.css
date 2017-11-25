@@ -1,0 +1,27 @@
+body{
+	background-color: #1F2124;
+}
+.jumbotron{
+	background-color: #F68657;
+	 margin: auto;
+    width: 100%;
+    border: 3px solid;
+    padding: 10px;
+    text-align: center;
+}
+h1.display-3{
+	font-size: 200px;
+	font-family: 'Monoton', cursive;
+	font-weight: bolder;
+
+}
+p.lead {
+	font-weight: bold;
+}
+
+.play a{
+	font-family: 'Raleway', sans-serif;
+	font-weight: bolder;
+	font-size: 40px;
+	color: #383A3F;
+}
