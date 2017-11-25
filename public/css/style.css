@@ -1,5 +1,7 @@
 body{
 	background-color: #1F2124;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
 }
 .jumbotron{
 	background-color: #F68657;
@@ -25,3 +27,12 @@ p.lead {
 	font-size: 40px;
 	color: #383A3F;
 }
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.full-height {
+            height: 100vh;
+        }
+
