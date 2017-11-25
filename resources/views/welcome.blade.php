@@ -22,44 +22,37 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div>
-                    @if (Auth::check())
-                        <a href="{{ url('/places/input') }}"></a>
-                        <div class="jumbotron vertical-center">
-                            <div class="inner-jumbo">
-                              <h1 class="display-3">VENUE HUNTER</h1>
-                              <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
-                              <p style="text-align:center" class="play">
-                                
-                                @if (Auth::check())
-                                    <a href="{{ url('/places/input') }}" role="button">
-                                    <i style="color:#383A3F" class="fa fa-play" aria-hidden="true"></i>
-                                Hey, {{\Auth::user()->name}}. Let's Go</a>
-                               <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-                                <p>Not {{ Auth::user()->name }}?
-                                
-                                    <a action="{{ route('logout') }}" role="button" value="submit">logout</a>
-                                    {{ csrf_field() }}
-                                    </form>
-                                  </p>
-                                @else
-                                Let's get to know each other first.
-                                    <a href="{{ url('/login') }}">Login</a>
-                                    <a href="{{ url('/register') }}">Register</a>
-                                @endif
-                                
+            <div class="jumbotron vertical-center">
+                <h1 class="display-3">VENUE HUNTER</h1>
+                <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
+                    @if (Route::has('login'))
+                        @if (Auth::check())
+                            <p style="text-align:center" class="play">
+                                <a href="{{ url('/places/input') }}" role="button">
+                                <i style="color:#383A3F" class="fa fa-play" aria-hidden="true"></i>
+                                    Hey, {{\Auth::user()->name}}. Let's Go
+                                </a>
+                            </p>
+                            <p>Not {{ Auth::user()->name }}?
+                                <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>                                
+                             
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form> 
+                            </p>
 
-                              </p>
-                            </div>
-                        </div>
-                         @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                           
+                        @else
+                            <p>Let's get to know each other first.
+                                        <a href="{{ url('/login') }}">Login</a>
+                                        <a href="{{ url('/register') }}">Register</a>
+                            </p>
+                        @endif
                     @endif
-                </div>
-            @endif
-            
         </div>
     </body>
 </html>
