@@ -5,14 +5,13 @@ Let's Find a Venue
 @endsection
 
 @section('content')
-<body>
+<div class="flex-center position-ref full-height">
+            <div class="jumbotron vertical-center">
+                <h1 class="display-3">VENUE HUNTER</h1>
+                <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
+                    
 
-     
-
-	<h1>Club Hunter!</h1>
-
-
-	<form action="/" method="post">
+<form action="/" method="post">
 	        <input style="text-align:center" type="hidden" name="_token" value="{{ csrf_token() }}">
 	        <ul><strong>City: <input type="text" name="city"><br></strong></ul>
 	        <ul><strong>State: <input type="text" name="state"><br></strong></ul>

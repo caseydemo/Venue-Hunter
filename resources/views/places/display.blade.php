@@ -18,7 +18,6 @@ Let's Find a Venue
 
     <body>
 
-        {{ $keyword }}
         <h4>Search Results for {{ $cityName }}</h4>
         <h4>{{ $searchDate }}</h4>
 

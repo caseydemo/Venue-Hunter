@@ -28,7 +28,7 @@
                     @if (Route::has('login'))
                         @if (Auth::check())
                             <p style="text-align:center" class="play">
-                                <a href="{{ url('/places/input') }}" role="button">
+                                <a href="{{ url('/home') }}" role="button">
                                 <i style="color:#383A3F" class="fa fa-play" aria-hidden="true"></i>
                                     Hey, {{\Auth::user()->name}}. Let's Go
                                 </a>
