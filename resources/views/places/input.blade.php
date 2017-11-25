@@ -11,15 +11,29 @@ Let's Find a Venue
                 <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
                     
 
-<form action="/" method="post">
-	        <input style="text-align:center" type="hidden" name="_token" value="{{ csrf_token() }}">
-	        <ul><strong>City: <input type="text" name="city"><br></strong></ul>
-	        <ul><strong>State: <input type="text" name="state"><br></strong></ul>
-	        <ul><strong>Keyword: <input type="text" name="keyword"><br></strong></ul>
-	        <input type="submit">
+<form action="/" method="post" class="input">
+	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+	        City: <input type="text" name="city">State: <input type="text" name="state">
+	        <!-- <ul><strong>Keyword: <input type="text" name="keyword"><br></strong></ul> -->
+	      
+	        <!-- Split button -->
+			<div class="btn-group">
+			  <select name="keyword" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span class="caret"></span>
+			    <span class="sr-only">Toggle Dropdown</span>
+			  </button>
+			    <li><option value="bar">Bar</option></li>
+			    <li><option value="night_club">Night Club</option></li>
+			    <li><option value="stadium">Stadium</option></li>
+			  </select>
+			</div>
+			  <input type="submit">
+
 	    </form>      
 
 
+
+	<div class="jumbo-center">
 	    @if(!empty($recent_city))
 	    <h3>Recent Searches</h3>
 		<table class="table table-striped">
@@ -36,7 +50,7 @@ Let's Find a Venue
 			</tr>
 			@endfor
 		</table>
-
 	    @endif
+	</div>
 </body>
 @endsection

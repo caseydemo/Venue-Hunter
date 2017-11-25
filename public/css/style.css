@@ -12,6 +12,9 @@ body{
     padding: 10px;
     text-align: center;
 }
+td {
+	font-weight: bold;
+}
 h1.display-3{
 	font-size: 200px;
 	font-family: 'Monoton', cursive;
@@ -44,7 +47,19 @@ a.navbar-brand{
 	font-family: 'Monoton', cursive;
 }
 a{
-		font-family: 'Monoton', cursive;
-
+	font-family: 'Monoton', cursive;
 }
-
+.jumbo-center{
+	margin: auto;
+	width: 75%;
+}
+ul{
+	font-family: 'Raleway', sans-serif;
+}
+.form-row{
+	width: 40%;
+	display: inline-grid;
+}
+.input, h3{
+	font-weight: bold;
+}
