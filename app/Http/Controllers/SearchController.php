@@ -38,6 +38,7 @@ class SearchController extends Controller
     {
            
         $search = new \App\Search;
+        $search->user_id=\Auth::user()->name;
         $search->city= $request->input('city');
         $search->keyword = $request->input('keyword');
         $search->lattitude = $request->input('lattitude');
@@ -219,7 +220,6 @@ class SearchController extends Controller
         // $recent_city = $recent_searches[0]['attributes']['city'];
         // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
         // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
-
 
         }
 

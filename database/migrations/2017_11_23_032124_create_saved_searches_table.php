@@ -15,6 +15,7 @@ class CreateSavedSearchesTable extends Migration
     {
         Schema::create('searches', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('user_id');
             $table->text('city')->nullable();
             $table->string('keyword')->nullable();
             $table->double('lattitude', 8, 4);

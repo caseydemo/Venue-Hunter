@@ -11,8 +11,17 @@ Let's Find a Venue
 
 <button class="btn btn-alert" onclick="history.go(-1);">Back to Search</button>
 
+
+     <div class="flex-center position-ref full-height">
+            <div class="jumbotron vertical-center">
+                <h1 class="medium-title">VENUE HUNTER</h1>
+                <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
+        </div>
+    </div>
 	<hr>
-		<ul><h1>Name: {{ $name }}  </h1></ul>
+  <div class="flex-center position-ref full-height">
+            <div class="jumbotron vertical-center">
+                <ul><h1>Name: {{ $name }}  </h1></ul>
         <ul><strong>Address: {{ $address }}</strong></ul>
         <ul><strong>Open Now:
         @if($open_now) 
@@ -46,6 +55,10 @@ Let's Find a Venue
             </strong></ul>
             <hr>
         @endif
+        </div>
+    </div>
+
+		
 	
 </body>
 @endsection
