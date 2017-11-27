@@ -24,6 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         $recent_searches = \App\Search::get();
+        dd($recent_searches);
         $search_count = count($recent_searches)+1;
 
 
