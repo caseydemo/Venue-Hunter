@@ -84,39 +84,39 @@ Let's Find a Venue
 	    </form>      
 	</div>
 </div>
-<div style="margin-top: 20px;" class="flex-center position-ref full-height">
-    <div class="jumbotron vertical-center">
-	<div class="jumbo-center">
-	    @if(!empty(\Auth::user()->name))
-	    <h3>{{ \Auth::user()->name }}'s Recent Searches</h3>
-		<table class="table table-striped">
 
-		@for($i=0; $i<$search_count-1; $i++)
-			<form action="/" method="post" class="input form-inline">
-		    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-		    <input type="hidden" name="city" value="{{ $recent_city[$i] }}">
-		    <button type="submit">TEST</button>
-			</form>
+@if(!empty(\Auth::user()->name))
+	@for($i=0; $i<$search_count-1; $i++)
+		<form action="/" method="post" class="input form-inline">
+	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+	    <input type="hidden" name="city" value="{{ $recent_city[$i] }}">
+		</form>
+	@endfor
+	@for($i=0; $i<$search_count-1; $i++)
+		@if($user_id[$i]==\Auth::user()->name)
+
+		  <div style="margin-top: 20px;" class="flex-center position-ref full-height">
+		    <div class="jumbotron vertical-center">
+			<div class="jumbo-center">
+			    <h3>{{ \Auth::user()->name }}'s Recent Searches</h3>
+				<table class="table table-striped">
+					<tr>
+					    <th>City</th>
+					    <th>Keyword</th> 
+					    <th>Searched At</th>
+				  	</tr>
+				  	<tr>
+					    <td>{{ $recent_city[$i] }}</td>
+					    <td>{{ $recent_keyword[$i] }}</td>
+					    <td>{{ $recent_search_timestamp[$i] }}</td>
+					</tr>
+				</table>
+
+				@endif
 		@endfor
-
-
-
-		  <tr>
-		    <th>City</th>
-		    <th>Keyword</th> 
-		    <th>Searched At</th>
-		  </tr>
-		  @for($i=0; $i<$search_count-1; $i++)
-		  @if($user_id[$i]==\Auth::user()->name)
-		  	<tr>
-			    <td>{{ $recent_city[$i] }}</td>
-			    <td>{{ $recent_keyword[$i] }}</td>
-			    <td>{{ $recent_search_timestamp[$i] }}</td>
-			</tr>
-			@endif
-			@endfor
-		</table>
-	    @endif
+@endif
+			</div>
+		</div>
 	</div>
 </body>
 @endsection
