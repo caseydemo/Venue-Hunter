@@ -9,11 +9,15 @@ Let's Find a Venue
             <div class="jumbotron vertical-center">
                 <h1 class="medium-title">WHERE DO YOU WANT TO LOOK?</h1>
 
-<form action="/" method="post" class="input">
+<form action="/" method="post" class="input form-inline">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-	        City: <input type="text" name="city">
-	        State:
-	        <select name="state">
+			  <div class="form-group">
+			  	<span style="display: inline-block;" class="label label-default">City: </span>
+			    <input type="text" name="city" class="form-control" id="city" placeholder="City">
+			  </div>
+			
+			  	<span style="display: inline-block;" class="label label-default">State: </span>
+	        <select style="font-weight: bolder;" class="btn btn-default dropdown-toggle" name="state">
 				<option value="AL">AL</option>
 				<option value="AK">AK</option>
 				<option value="AR">AR</option>	
@@ -66,25 +70,23 @@ Let's Find a Venue
 				<option value="WV">WV</option>
 				<option value="WY">WY</option>
 			</select>
-			Keyword:
+			  	<span style="display: inline-block;" class="label label-default">Keyword: </span>
 			<div class="btn-group">
-				<select name="keyword" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<select name="keyword" style="font-weight: bolder;" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    <span class="caret"></span>
 			    <span class="sr-only">Toggle Dropdown</span>
-			  </button>
-			    <li><option value="bar">Bar</option></li>
-			    <li><option value="night_club">Night Club</option></li>
-			    <li><option value="stadium">Stadium</option></li>
+			    <li><option style="font-weight: bolder;" value="bar">Bar</option></li>
+			    <li><option style="font-weight: bolder;" value="night_club">Night Club</option></li>
+			    <li><option style="font-weight: bolder;" value="stadium">Stadium</option></li>
 			  </select>
 			</div>
-			<button type="submit" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
-
-			  <button class="button hvr-bounce-out">stuff!</button>
-
+			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
 	    </form>      
+	</div>
+</div>
 
-
-
+<div style="margin-top: 20px;" class="flex-center position-ref full-height">
+    <div class="jumbotron vertical-center">
 	<div class="jumbo-center">
 	    @if(in_array(\Auth::user()->name, $user_id))
 	    <h3>{{ \Auth::user()->name }}'s Recent Searches</h3>

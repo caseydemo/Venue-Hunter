@@ -83,3 +83,7 @@ a:hover{
 	color:#383A3F;
 	text-decoration: none;
 }
+.label{
+	margin-left: 15px;
+	font-size: 18px;
+}
