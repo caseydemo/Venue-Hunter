@@ -434,4 +434,130 @@ class SearchController extends Controller
 
         return ($jsonResponse);
     }
+
+
+    public function getRecentSearch(Request $request){
+
+        $searchDate = $request->input('search-date');
+        $cityName = $request->input('city-name');
+        $keyword = $request->input('keyword');
+        $lattitude = $request->input('lattitude');
+        $longitude = $request->input('longitude');
+
+        // *** NEARBY SEARCH ***
+
+        $nearbySearchJSON = $this->getNearbySearch($lattitude, $longitude, $keyword);
+
+        // dd($nearbySearchJSON);
+
+        $loopCount = count($nearbySearchJSON['results']);
+
+    // *** FOR LOOP FOR LOOP FOR LOOP ***
+
+        for($i=0; $i<$loopCount-1; $i++){
+            
+            if(null !== $nearbySearchJSON['results'][$i]['name']){
+                $nameArray[$i] = $nearbySearchJSON['results'][$i]['name'];
+            }
+            else{
+                $nameArray[$i]='';
+            }
+            
+            if(!empty($nearbySearchJSON['results'][$i]['id'])){
+                $idArray[$i] = $nearbySearchJSON['results'][$i]['id'];
+            }
+            else{
+                $idArray[$i] = '';
+            }
+            if(!empty($nearbySearchJSON['results'][$i]['geometry']['location']['lat'])){
+                $location_lat_array[$i] = $nearbySearchJSON['results'][$i]['geometry']['location']['lat'];
+            }
+            else{
+                $location_lat_array[$i]='';
+            }
+            if(!empty($nearbySearchJSON['results'][$i]['geometry']['location']['lng'])){
+                $location_lng_array[$i] = $nearbySearchJSON['results'][$i]['geometry']['location']['lng'];
+            }
+            else{
+                $location_lng_array[$i]='';
+            }
+            if(!empty($nearbySearchJSON['results'][$i]['vicinity'])){
+                $vicinityArray[$i] = $nearbySearchJSON['results'][$i]['vicinity'];
+            }
+            else{
+                $vicinityArray[$i]='';
+            }
+            if(!empty($nearbySearchJSON['results'][$i]['place_id'])){
+                $place_id_array[$i] = $nearbySearchJSON['results'][$i]['place_id'];
+            }
+            else{
+                $place_id_array[$i]='';
+            }
+            if( ! empty( $nearbySearchJSON['results'][$i]['opening_hours'] ) && 
+                $nearbySearchJSON['results'][$i]['opening_hours'] !== null 
+            ) {
+                $open_now_array[$i] = $nearbySearchJSON['results'][$i]['opening_hours'];
+                if($open_now_array[$i]){
+                    $open_now_array[$i]='Yes';
+                }
+                else{
+                    $open_now_array[$i]='No';
+                }
+            }
+            else{
+                $open_now_array[$i]='N/A';
+            }
+
+        $recent_searches = \App\Search::get();
+        
+  
+
+        
+        
+        // dd($recent_city);
+        // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
+        // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
+
+        }
+
+
+    // *** END OF FOR LOOP END OF FOR LOOP END OF FOR LOOP ***
+
+        return view('/places/display', compact(
+                    
+                    'recent_search_timestamp',
+                    'recent_keyword',
+                    'recent_city',
+                    'keyword',
+                    'searchDate',
+                    'cityName',
+                    'lattitude',
+                    'longitude',
+                    'loopCount', 
+                    'location_lat_array', 
+                    'location_lng_array', 
+                    'viewport_ne_lat', 
+                    'viewport_ne_lng', 
+                    'viewport_sw_lat', 
+                    'viewport_sw_lng', 
+                    'idArray', 
+                    'nameArray', 
+                    'open_now',
+                    'photo', 
+                    'indiv_photo_ref_array', 
+                    'place_id_array', 
+                    'rating', 
+                    'reference', 
+                    'scope', 
+                    'types', 
+                    'vicinityArray',
+                    'open_now_array',
+                    'jsonResponse'
+                    ));
+    }
+    
+
+
+
+
 }

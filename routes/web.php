@@ -20,6 +20,8 @@ Auth::routes();
 
 // Route::get('/', 'GuzzleController@getInput');
 
+Route::post('/recent-search', 'SearchController@getRecentSearch');
+
 Route::post('/', 'SearchController@getGeocode');
 
 Route::resource('/places', 'SearchController');

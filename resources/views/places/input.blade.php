@@ -87,10 +87,15 @@ Let's Find a Venue
 
 @if(!empty(\Auth::user()->name))
 	@for($i=0; $i<$search_count-1; $i++)
-		<form action="/" method="post" class="input form-inline">
+		<form action="/recent-search" method="post" class="input form-inline">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-	    <input type="hidden" name="city" value="{{ $recent_city[$i] }}">
-		</form>
+	    <input type="hidden" name="lattitude" value="{{ $lattitude[$i] }}" >
+	    <input type="hidden" name="longitude" value="{{ $longitude[$i] }}">
+	    <input type="hidden" name="keyword" value="{{ $recent_keyword[$i]}} ">
+	    <input type="hidden" name="city-name" value="{{ $recent_city[$i]}} ">
+	    <input type="hidden" name="search-date" value="{{ $recent_search_timestamp[$i] }}">
+
+		
 	@endfor
 	@for($i=0; $i<$search_count-1; $i++)
 		@if($user_id[$i]==\Auth::user()->name)
@@ -105,12 +110,13 @@ Let's Find a Venue
 					    <th>Keyword</th> 
 					    <th>Searched At</th>
 				  	</tr>
-				  	<tr>
+				  	<tr><td><button type="submit">{{ $recent_city[$i] }}</button></td>
 					    <td>{{ $recent_city[$i] }}</td>
 					    <td>{{ $recent_keyword[$i] }}</td>
 					    <td>{{ $recent_search_timestamp[$i] }}</td>
 					</tr>
 				</table>
+				</form>
 
 				@endif
 		@endfor

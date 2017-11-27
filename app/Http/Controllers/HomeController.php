@@ -55,12 +55,14 @@ class HomeController extends Controller
                 $user_id[$i] = [];
             }
             
-            
+            // dd($recent_searches[$i]['attributes']);
+            $lattitude[$i]=$recent_searches[$i]['attributes']['lattitude'];
+            $longitude[$i]=$recent_searches[$i]['attributes']['longitude'];
 
         }
         // dd($recent_searches);
         // dd($recent_keyword);
         // dd($recent_search_timestamp);
-        return view('places/input', compact('user_id', 'search_count', 'recent_city', 'recent_keyword', 'recent_search_timestamp'));
+        return view('places/input', compact('longitude', 'lattitude', 'user_id', 'search_count', 'recent_city', 'recent_keyword', 'recent_search_timestamp'));
     }
 }
