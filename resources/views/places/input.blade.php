@@ -84,13 +84,23 @@ Let's Find a Venue
 	    </form>      
 	</div>
 </div>
-
 <div style="margin-top: 20px;" class="flex-center position-ref full-height">
     <div class="jumbotron vertical-center">
 	<div class="jumbo-center">
-	    @if(in_array(\Auth::user()->name, $user_id))
+	    @if(in_array(\Auth::user()->name, $recent_search_user_id))
 	    <h3>{{ \Auth::user()->name }}'s Recent Searches</h3>
 		<table class="table table-striped">
+
+		@for($i=0; $i<$search_count-1; $i++)
+			<form action="/" method="post" class="input form-inline">
+		    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+		    <input type="hidden" name="city" value="{{ $recent_city[$i] }}">
+		    <button type="submit">TEST</button>
+			</form>
+		@endfor
+
+
+
 		  <tr>
 		    <th>City</th>
 		    <th>Keyword</th> 

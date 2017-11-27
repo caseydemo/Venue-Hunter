@@ -216,8 +216,9 @@ class SearchController extends Controller
                 $open_now_array[$i]='N/A';
             }
 
-        // $recent_searches = \App\Search::get();
-        // $recent_city = $recent_searches[0]['attributes']['city'];
+        $recent_searches = \App\Search::get();
+        $recent_city = $recent_searches[0]['attributes']['city'];
+        // dd($recent_city);
         // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
         // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
 
