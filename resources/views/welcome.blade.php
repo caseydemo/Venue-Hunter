@@ -19,7 +19,7 @@
         <!-- local css -->
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/hover.css') }}" rel="stylesheet" media="all">
-  
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
