@@ -26,6 +26,7 @@ class HomeController extends Controller
         $recent_searches = \App\Search::get();
         $search_count = count($recent_searches)+1;
 
+
         for($i=0; $i<$search_count-1; $i++){
 
             if(!empty($recent_searches[$i]['attributes']['city'])){
@@ -50,7 +51,7 @@ class HomeController extends Controller
                 $recent_search_user_id[$i] = $recent_searches[$i]['attributes']['user_id'];
             }
             else{
-                $recent_search_user_id = '';
+                $recent_search_user_id = [];
             }
 
             
