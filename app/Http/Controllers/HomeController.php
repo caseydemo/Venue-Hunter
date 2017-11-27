@@ -24,7 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         $recent_searches = \App\Search::get();
-        dd($recent_searches);
         $search_count = count($recent_searches)+1;
 
 
@@ -54,7 +53,7 @@ class HomeController extends Controller
             else{
                 $recent_search_user_id = [];
             }
-
+            dd($recent_search_user_id);
             
             
 
