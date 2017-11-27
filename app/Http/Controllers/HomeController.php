@@ -48,9 +48,11 @@ class HomeController extends Controller
                 $recent_search_timestamp[$i] = 'N/A';
             }
             if(!empty($recent_searches[$i]['attributes']['user_id'])){
+               error_log('if');
                 $recent_search_user_id[$i] = $recent_searches[$i]['attributes']['user_id'];
             }
             else{
+                error_log('else');
                 $recent_search_user_id = [];
             }
             dd($recent_search_user_id);
