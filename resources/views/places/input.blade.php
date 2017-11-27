@@ -7,8 +7,7 @@ Let's Find a Venue
 @section('content')
 <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
-                <h1 class="display-3">VENUE HUNTER</h1>
-                <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
+                <h1 class="medium-title">WHERE DO YOU WANT TO LOOK?</h1>
 
 <form action="/" method="post" class="input">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -69,7 +68,7 @@ Let's Find a Venue
 			</select>
 			Keyword:
 			<div class="btn-group">
-				<select name="keyword" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<select name="keyword" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    <span class="caret"></span>
 			    <span class="sr-only">Toggle Dropdown</span>
 			  </button>
@@ -78,7 +77,9 @@ Let's Find a Venue
 			    <li><option value="stadium">Stadium</option></li>
 			  </select>
 			</div>
-			  <input type="submit">
+			<button type="submit" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
+
+			  <button class="button hvr-bounce-out">stuff!</button>
 
 	    </form>      
 

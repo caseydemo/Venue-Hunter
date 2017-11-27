@@ -20,7 +20,7 @@ Let's Find a Venue
     <body>
         <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
-                <h1 class="display-3">VENUE HUNTER</h1>
+                <h1 class="medium-title">HERE'S SOME NUMBERS.</h1>
                 <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
 
             </div>
