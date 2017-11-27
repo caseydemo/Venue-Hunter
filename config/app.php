@@ -50,8 +50,10 @@ return [
     | your application so that it is used when running Artisan tasks.
     |
     */
+    'url' => env('APP_URI', 'http://localhost'),
 
     'url' => env('APP_URL', 'http://localhost'),
+    
 
     /*
     |--------------------------------------------------------------------------
