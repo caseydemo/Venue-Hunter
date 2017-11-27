@@ -47,15 +47,13 @@ class HomeController extends Controller
             else{
                 $recent_search_timestamp[$i] = 'N/A';
             }
+
             if(!empty($recent_searches[$i]['attributes']['user_id'])){
-               error_log('if');
-                $recent_search_user_id[$i] = $recent_searches[$i]['attributes']['user_id'];
+                $user_id[$i] = $recent_searches[$i]['attributes']['user_id'];
             }
             else{
-                error_log('else');
-                $recent_search_user_id = [];
+                $user_id[$i] = [];
             }
-            dd($recent_search_user_id);
             
             
 
@@ -63,6 +61,6 @@ class HomeController extends Controller
         // dd($recent_searches);
         // dd($recent_keyword);
         // dd($recent_search_timestamp);
-        return view('places/input', compact('recent_search_user_id', 'search_count', 'recent_city', 'recent_keyword', 'recent_search_timestamp'));
+        return view('places/input', compact('user_id', 'search_count', 'recent_city', 'recent_keyword', 'recent_search_timestamp'));
     }
 }

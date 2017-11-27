@@ -159,7 +159,6 @@ class SearchController extends Controller
 
         $loopCount = count($nearbySearchJSON['results']);
 
-
     // *** FOR LOOP FOR LOOP FOR LOOP ***
 
         for($i=0; $i<$loopCount-1; $i++){
@@ -217,7 +216,11 @@ class SearchController extends Controller
             }
 
         $recent_searches = \App\Search::get();
-        $recent_city = $recent_searches[0]['attributes']['city'];
+        
+  
+
+        
+        
         // dd($recent_city);
         // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
         // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];

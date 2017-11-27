@@ -87,7 +87,7 @@ Let's Find a Venue
 <div style="margin-top: 20px;" class="flex-center position-ref full-height">
     <div class="jumbotron vertical-center">
 	<div class="jumbo-center">
-	    @if(in_array(\Auth::user()->name, $recent_search_user_id))
+	    @if(!empty(\Auth::user()->name))
 	    <h3>{{ \Auth::user()->name }}'s Recent Searches</h3>
 		<table class="table table-striped">
 
