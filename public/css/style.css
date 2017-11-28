@@ -91,3 +91,10 @@ a:hover{
 	font-weight: bold;
 	background-color: #F6B352;
 }
+.iframe{
+	width: 50%;
+	height: 250px;
+}
+.review-body{
+	font-weight: bold;
+}

@@ -22,10 +22,7 @@ Let's Find a Venue
                      <p><button type="submit" name="button" value="save" class="btn-lg hvr-pulse">Save Search</button></p>
                 </form>
             </div>
-        </div>
-
-
-        
+        </div>    
             <div class="jumbotron vertical-center">
                    
                     

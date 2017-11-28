@@ -46,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        
+                        <li><button class="btn btn-alert" onclick="history.go(-1);">Back to Search</button></li>
                         <li><a href="{{ url('/') }}">New Search</a></li>
 
                     </ul>

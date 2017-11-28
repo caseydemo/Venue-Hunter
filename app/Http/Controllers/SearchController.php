@@ -282,7 +282,7 @@ class SearchController extends Controller
         $detailJSON = json_decode($tempJson, true);
 
 
-        // dd($detailJSON);
+        $place_id=$detailJSON['result']['place_id'];
 
         $loopCount = count($detailJSON['result']);      
         
@@ -366,10 +366,14 @@ class SearchController extends Controller
             }
 
 
+
+
         $map_url=$detailJSON['result']['url'];
 
+        $url='//www.google.com/maps/embed/v1/place?q=place_id:' . $place_id . '&zoom=17&key=AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM';
 
         return view('/places/detail', compact(
+            'url',
             'name', 
             'address', 
             'phone_number', 

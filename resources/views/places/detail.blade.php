@@ -6,19 +6,12 @@ Let's Find a Venue
 
 @section('content')
 <body>
-
-   
-
-<button class="btn btn-alert" onclick="history.go(-1);">Back to Search</button>
-
-
      <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
                 <h1 class="medium-title">{{ $name }}</h1>
                 <p class="lead">{{ $address }}</p>
                 <p class="lead">{{ $phone_number }}</p>
 
-                
         <ul><strong>Open Now:
         @if($open_now) 
             Yes</strong></ul>
@@ -26,8 +19,6 @@ Let's Find a Venue
             No</strong></ul>
         @endif
         <ul><img src="{{ $icon }}"/></ul>
-        <ul><a href="{{ $map_url }}" target="_blank"><button class="btn btn-lg hvr-bounce-to-right">{{$name}} on google maps</button></a></ul>
-
         @if($website!= '#')
             <ul><a href="{{ $website }}" target="_blank"><button class="btn btn-lg hvr-bounce-to-right">{{$name}}'s Website</button></a></ul>
         @else
@@ -41,19 +32,25 @@ Let's Find a Venue
             @endfor
         @endif
         </strong>
+
+        <!-- IFRAME -->
+        <iframe class="iframe" src="{{$url}}">
+        </iframe>
        
         @if($review_bool)
             <ul><h2>Reviews:</h2></ul>
             <hr>
             @for($i=0; $i<3; $i++)
                 <ul><h3>{{$i+1}}. By:{{ $author_name_array[$i] }}, {{ $time_description_array[$i]}}</h3></ul>
-                <ul><h4>{{ $rating_array[$i] }} Stars</h4></ul>
-                <ul>{{ $review_text_array[$i] }}</ul>
+                <div class="review-body">
+                    <ul>{{ $rating_array[$i] }} Stars</ul>
+                    <ul>{{ $review_text_array[$i] }}</ul>
+                </div>
                 <hr>
                 <br>
             @endfor
             </strong></ul>
-            <hr>
+            
         @endif
         </div>
     </div>
