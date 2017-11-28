@@ -11,7 +11,7 @@ Let's Find a Venue
         <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
                 <h1 class="medium-title">{{ $cityName }}</h1>
-                <h2 style="font-weight:bold">{{ $searchDate }}</h2>
+                <h3 style="font-weight:bold">{{ $searchDate }}</h3>
                  <form class="form-horizontal" method="post" action="/places">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
                     <input type="hidden" name="city" value="{{ $cityName }}"> 

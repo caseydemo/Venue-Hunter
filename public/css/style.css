@@ -6,10 +6,11 @@ body{
 }
 .jumbotron{
 	background-color: #F68657;
-	 margin: auto;
+	margin: auto;
     width: 100%;
     border: 3px solid;
     padding: 10px;
+    padding-bottom: 75px;
     text-align: center;
 }
 td {
@@ -25,7 +26,7 @@ h1.medium-title{
 	font-size: 50px;
 	font-family: 'Monoton', cursive;
 	font-weight: bolder;
-	padding-bottom: 5px;
+	padding-top: 35px;
 }
 p.lead {
 	font-weight: bold;
@@ -81,6 +82,7 @@ a{
 }
 a:hover{
 	color:#383A3F;
+	cursor:pointer;
 	text-decoration: none;
 }
 .label{
@@ -97,4 +99,8 @@ a:hover{
 }
 .review-body{
 	font-weight: bold;
+}
+.form-inline{
+	padding-top: 50px;
+
 }
