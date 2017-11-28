@@ -43,8 +43,7 @@ class SearchController extends Controller
         $search->keyword = $request->input('keyword');
         $search->lattitude = $request->input('lattitude');
         $search->longitude = $request->input('longitude');
-        $search->searched_at = Carbon::now()->timezone('America/New_York')->toDayDateTimeString();
-        // dd($search->city);
+        $search->searched_at = $request->input('searchDate');
         $search -> save();
 
         return redirect('/home');    
@@ -64,7 +63,6 @@ class SearchController extends Controller
         // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
         // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
 
-        // dd($recent_city);
 
         // return view('/places/input', compact('$recent_city', '$recent_keyword', '$recent_search_timestamp'));
     }
@@ -100,7 +98,10 @@ class SearchController extends Controller
      */
     public function destroy($id)
     {
-        //
+      
+            $search = \App\Search::find($id);
+            $search->delete();
+            return redirect ('/home');
     }
 
 
@@ -151,11 +152,14 @@ class SearchController extends Controller
 
         $searchDate = Carbon::now()->timezone('America/New_York')->toDayDateTimeString();
 
+        // dd(Carbon::now()->timezone('America/New_York')->toDayDateTimeString());
+
+
+        
         // *** NEARBY SEARCH ***
 
         $nearbySearchJSON = $this->getNearbySearch($lattitude, $longitude, $keyword);
 
-        // dd($nearbySearchJSON);
 
         $loopCount = count($nearbySearchJSON['results']);
 
@@ -221,7 +225,6 @@ class SearchController extends Controller
 
         
         
-        // dd($recent_city);
         // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
         // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
 
@@ -409,7 +412,6 @@ class SearchController extends Controller
         $jsonResponse = json_decode($tempJson, true);
 
     
-        // dd(count($jsonResponse));
 
         $counter = count($jsonResponse);
 
@@ -428,7 +430,6 @@ class SearchController extends Controller
 
         }
         
-        // dd($photo_array);
 
 
 
@@ -448,7 +449,6 @@ class SearchController extends Controller
 
         $nearbySearchJSON = $this->getNearbySearch($lattitude, $longitude, $keyword);
 
-        // dd($nearbySearchJSON);
 
         $loopCount = count($nearbySearchJSON['results']);
 
@@ -509,14 +509,6 @@ class SearchController extends Controller
             }
 
         $recent_searches = \App\Search::get();
-        
-  
-
-        
-        
-        // dd($recent_city);
-        // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
-        // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
 
         }
 

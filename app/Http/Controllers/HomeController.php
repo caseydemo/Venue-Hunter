@@ -41,11 +41,12 @@ class HomeController extends Controller
             else{
                 $recent_keyword[$i]='N/A';
             }
+            
             if(!empty($recent_searches[$i]['attributes']['searched_at'])){
-                $recent_search_timestamp[$i] = $recent_searches[$i]['attributes']['searched_at'];
+                $searched_at[$i]=$recent_searches[$i]['attributes']['searched_at'];
             }
             else{
-                $recent_search_timestamp[$i] = 'N/A';
+                $searched_at[$i] = 'N/A';
             }
 
             if(!empty($recent_searches[$i]['attributes']['user_id'])){
@@ -55,14 +56,12 @@ class HomeController extends Controller
                 $user_id[$i] = [];
             }
             
-            // dd($recent_searches[$i]['attributes']);
             $lattitude[$i]=$recent_searches[$i]['attributes']['lattitude'];
             $longitude[$i]=$recent_searches[$i]['attributes']['longitude'];
-
+            $recent_search_id[$i]=$recent_searches[$i]['attributes']['id'];
+            
+            // dd($searched_at);
         }
-        // dd($recent_searches);
-        // dd($recent_keyword);
-        // dd($recent_search_timestamp);
-        return view('places/input', compact('longitude', 'lattitude', 'user_id', 'search_count', 'recent_city', 'recent_keyword', 'recent_search_timestamp'));
+        return view('places/input', compact('recent_search_id', 'longitude', 'lattitude', 'user_id', 'search_count', 'recent_city', 'recent_keyword', 'searched_at'));
     }
 }

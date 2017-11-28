@@ -13,6 +13,7 @@ Let's Find a Venue
         <input type="hidden" name="keyword" value="{{ $keyword }}"> 
         <input type="hidden" name="lattitude" value="{{ $lattitude }}">
         <input type="hidden" name="longitude" value="{{ $longitude }}">
+        <input type="hidden" name="searchDate" value="{{$searchDate}}">
          <button type="submit" name="button" value="save" class="btn btn-md btn-default">Save Search</button>
     </form>
 
