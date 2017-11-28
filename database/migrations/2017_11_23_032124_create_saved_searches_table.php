@@ -20,7 +20,7 @@ class CreateSavedSearchesTable extends Migration
             $table->string('keyword')->nullable();
             $table->double('lattitude', 8, 4);
             $table->double('longitude', 8, 4);
-            $table->datetime('searched_at')->nullable();
+            $table->text('searched_at')->nullable();
             $table->timestamps();
         });
     }

@@ -46,6 +46,7 @@ class SearchController extends Controller
         $search->searched_at = $request->input('searchDate');
         $search -> save();
 
+        // dd($search->searched_at);
         return redirect('/home');    
     }
 
@@ -143,6 +144,7 @@ class SearchController extends Controller
 
         $geoJSON = json_decode($tempGeoJSON, true);
 
+
         $lattitude = $geoJSON['results'][0]['geometry']['location']['lat'];
         $longitude = $geoJSON['results'][0]['geometry']['location']['lng'];
 
@@ -159,7 +161,7 @@ class SearchController extends Controller
         // *** NEARBY SEARCH ***
 
         $nearbySearchJSON = $this->getNearbySearch($lattitude, $longitude, $keyword);
-
+        // dd($nearbySearchJSON);
 
         $loopCount = count($nearbySearchJSON['results']);
 
@@ -279,6 +281,9 @@ class SearchController extends Controller
         
         $detailJSON = json_decode($tempJson, true);
 
+
+        // dd($detailJSON);
+
         $loopCount = count($detailJSON['result']);      
         
         if(isset($detailJSON['result']['formatted_address'])){
@@ -353,11 +358,11 @@ class SearchController extends Controller
                 
             }
 
-            if(isset($detailJSON['result']['url'])){
-                $website=$detailJSON['result']['url'];
+            if(isset($detailJSON['result']['website'])){
+                $website=$detailJSON['result']['website'];
             }
             else{
-                $website='';
+                $website='#';
             }
 
 
@@ -392,7 +397,7 @@ class SearchController extends Controller
         $lat = round($lattitude, 4);
         $long = round($longitude, 4);
         $radius = 5000;
-        $type = 'night_club';
+        $type = 'bar';
         
         if(empty($keyword)){
             $keyword = 'bar';

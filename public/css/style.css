@@ -25,7 +25,7 @@ h1.medium-title{
 	font-size: 50px;
 	font-family: 'Monoton', cursive;
 	font-weight: bolder;
-	padding-bottom: 20px;
+	padding-bottom: 5px;
 }
 p.lead {
 	font-weight: bold;
@@ -86,4 +86,8 @@ a:hover{
 .label{
 	margin-left: 15px;
 	font-size: 18px;
+}
+.btn-lg{
+	font-weight: bold;
+	background-color: #F6B352;
 }

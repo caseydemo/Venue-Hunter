@@ -112,14 +112,14 @@ Let's Find a Venue
 	@for($i=0; $i<$search_count-1; $i++)
 		@if($user_id[$i]==\Auth::user()->name)		  
 				  	<tr>
-				  		<td><button type="submit" form="{{$i}}">{{ $recent_city[$i] }}</button></td>
+				  		<td><button style="font-weight: bold" class="btn hvr-bounce-to-right" type="submit" form="{{$i}}">{{ $recent_city[$i] }}</button></td>
 					    <td>{{ $recent_keyword[$i] }}</td>
 					    <td>{{ $searched_at[$i] }}</td>
 					     <td>
 						     <form class="button-form" method="post" action="/places/{{ $recent_search_id[$i] }}">
 						     	{{ csrf_field() }}
 	      						{{ method_field('DELETE') }}
-	      						<button class="btn btn-xs btn-default">
+	      						<button class="btn">
 	      						<i class="fa fa-trash" aria-hidden="true"></i>
 	      						</button>
 						     </form>

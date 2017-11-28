@@ -14,34 +14,34 @@ Let's Find a Venue
 
      <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
-                <h1 class="medium-title">VENUE HUNTER</h1>
-                <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
-        </div>
-    </div>
-	<hr>
-  <div class="flex-center position-ref full-height">
-            <div class="jumbotron vertical-center">
-                <ul><h1>Name: {{ $name }}  </h1></ul>
-        <ul><strong>Address: {{ $address }}</strong></ul>
+                <h1 class="medium-title">{{ $name }}</h1>
+                <p class="lead">{{ $address }}</p>
+                <p class="lead">{{ $phone_number }}</p>
+
+                
         <ul><strong>Open Now:
         @if($open_now) 
             Yes</strong></ul>
         @else
             No</strong></ul>
         @endif
-        <ul><img src="{{ $icon }}"/>Phone #: {{ $phone_number }}</ul>
-        <ul><a href="{{ $map_url }}" target="_blank">{{$name}} on google maps</a></ul>
-        <ul><a href="{{ $website }}" target="_blank">{{$name}}'s Website</a></ul>
+        <ul><img src="{{ $icon }}"/></ul>
+        <ul><a href="{{ $map_url }}" target="_blank"><button class="btn btn-lg hvr-bounce-to-right">{{$name}} on google maps</button></a></ul>
+
+        @if($website!= '#')
+            <ul><a href="{{ $website }}" target="_blank"><button class="btn btn-lg hvr-bounce-to-right">{{$name}}'s Website</button></a></ul>
+        @else
+            <ul>Website N/A</ul>
+        @endif
         
         @if($hours[0]!='N/A')
             <ul><strong>Hours:</ul></strong> 
             @for($i=0; $i<7; $i++)
                 <p>{{ $hours[$i] }}</p>
             @endfor
-        @else
-            <ul><strong> N/A </ul></strong>
         @endif
         </strong>
+       
         @if($review_bool)
             <ul><h2>Reviews:</h2></ul>
             <hr>
