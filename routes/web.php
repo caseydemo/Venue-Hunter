@@ -29,3 +29,5 @@ Route::resource('/places', 'SearchController');
 Route::get('/detail/{place_id}', 'SearchController@getDetailSearch');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/saved', 'SearchController@showSavedSearches');

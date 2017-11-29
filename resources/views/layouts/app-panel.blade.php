@@ -48,7 +48,7 @@
                     <ul class="nav navbar-nav">
                     
                         <li><a class="nav-link" href="{{ url('/home') }}">Search</a></li>
-                         <li><a class="nav-link" href="{{ url('/home') }}">Saved Searches</a></li>
+                         <li><a class="nav-link" href="{{ url('/saved') }}">Saved Searches</a></li>
                         
 
                     </ul>
