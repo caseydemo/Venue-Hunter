@@ -12,11 +12,11 @@ Let's Find a Venue
 <form action="/" method="post" class="input form-inline">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 			  <div class="form-group">
-			  	<span style="display: inline-block;" class="label label-default">City: </span>
+			  	<p class="input-label">City: </p>
 			    <input type="text" name="city" class="form-control" id="city" placeholder="City">
 			  </div>
 			
-			  	<span style="display: inline-block;" class="label label-default">State: </span>
+			  	<p class="input-label">State: </p>
 	        <select style="font-weight: bolder;" class="btn btn-default dropdown-toggle" name="state">
 				<option value="AL">AL</option>
 				<option value="AK">AK</option>
@@ -70,7 +70,7 @@ Let's Find a Venue
 				<option value="WV">WV</option>
 				<option value="WY">WY</option>
 			</select>
-			  	<span style="display: inline-block;" class="label label-default">Keyword: </span>
+			  	<p class="input-label">Keyword: </p>
 			<div class="btn-group">
 				<select name="keyword" style="font-weight: bolder;" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    <span class="caret"></span>
