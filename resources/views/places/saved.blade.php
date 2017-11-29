@@ -12,7 +12,7 @@ Let's Find a Venue
                 <h1 class="medium-title">{{ \Auth::user()->name }}'s Recent Searches</h1>
 @if(!empty(\Auth::user()->name))
 	@for($i=0; $i<$search_count-1; $i++)
-		<form style="display:none" action="/recent-searches" method="post" class="input form-inline" id="{{$i}}">
+		<form style="display:none" action="/recent-search" method="post" class="input form-inline" id="{{$i}}">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	    <input type="hidden" name="lattitude" value="{{ $lattitude[$i] }}" >
 	    <input type="hidden" name="longitude" value="{{ $longitude[$i] }}">

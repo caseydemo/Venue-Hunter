@@ -530,12 +530,19 @@ class SearchController extends Controller
         $recent_searches = \App\Search::get();
 
         }
+        if(empty($recent_searches)){
+            $empty_search=true;
+        }
+        else{
+            $empty_search=false;
+        }
 
 
     // *** END OF FOR LOOP END OF FOR LOOP END OF FOR LOOP ***
 
         return view('/places/display', compact(
                     
+                    'empty_search',
                     'recent_search_timestamp',
                     'recent_keyword',
                     'recent_city',
@@ -570,7 +577,6 @@ class SearchController extends Controller
 
         $recent_searches = \App\Search::get();
         $search_count = count($recent_searches)+1;
-
 
         for($i=0; $i<$search_count-1; $i++){
 
