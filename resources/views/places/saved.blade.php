@@ -2,14 +2,17 @@
 
 @section('title')
 Let's Find a Venue
-<a href="/home"><button class="btn btn-alert">Back to search</button></a>
-
 @endsection
 
 @section('content')
+
+
+<div class="flex-center position-ref full-height">
+            <div class="jumbotron vertical-center">
+                <h1 class="medium-title">{{ \Auth::user()->name }}'s Recent Searches</h1>
 @if(!empty(\Auth::user()->name))
 	@for($i=0; $i<$search_count-1; $i++)
-		<form action="/recent-searches" method="post" class="input form-inline" id="{{$i}}">
+		<form style="display:none" action="/recent-searches" method="post" class="input form-inline" id="{{$i}}">
 	    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 	    <input type="hidden" name="lattitude" value="{{ $lattitude[$i] }}" >
 	    <input type="hidden" name="longitude" value="{{ $longitude[$i] }}">
@@ -23,7 +26,6 @@ Let's Find a Venue
     <div class="jumbotron vertical-center">
 	<div class="jumbo-center">
 
-	<h3>{{ \Auth::user()->name }}'s Recent Searches</h3>
 	<table class="table table-striped">
 		<tr>
 		    <th>City</th>

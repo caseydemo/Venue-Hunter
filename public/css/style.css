@@ -1,12 +1,13 @@
 /*color scheme is lolcolors 1477 */
 body{
-	background-color: #1F2124;
+	background-color: #383A3F;;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
 }
 .jumbotron{
 	background-color: #F68657;
 	margin: auto;
+
     width: 100%;
     border: 3px solid;
     padding: 10px;
@@ -113,4 +114,39 @@ p.input-label{
 }
 .nav-link{
 	font-weight: bold;
+}
+.container{
+	width: 100%;
+	height: 75%;
+
+}
+.inner-container{
+	margin-top: 50px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#app-navbar-collapse{
+	margin-left: 0px;
+	width: 900px;
+}
+#app{
+	/*background-color: #383A3F;*/
+}
+.table.table-striped{
+	/*margin: 50%;*/
+	
+	margin-top: 75px;
+	margin-left: 0px;
+	padding:0px;
+	width: 100%;
+}
+.clippy{
+	display: block;
+    margin: auto;
+    width: 50%;	
+}
+.search-error{
+	font-size: 25px;
+	text-align: center;
 }

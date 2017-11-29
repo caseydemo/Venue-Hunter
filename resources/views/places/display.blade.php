@@ -19,13 +19,21 @@ Let's Find a Venue
                     <input type="hidden" name="lattitude" value="{{ $lattitude }}">
                     <input type="hidden" name="longitude" value="{{ $longitude }}">
                     <input type="hidden" name="searchDate" value="{{$searchDate}}">
-                     <p><button type="submit" name="button" value="save" class="btn-lg hvr-pulse">Save Search</button></p>
+                    @if(!$empty_search)
+                        <p><button type="submit" name="button" value="save" class="btn-lg hvr-pulse">Save Search</button></p>
+                    @endif
+                    @if($empty_search)
+                         <p class="search-error"> Sorry - your search returned no results. </p>
+                        <div class="clippy">
+                            <img src="{{ asset('clippy_animation.gif') }}">
+                            <a href="/input"><button class="btn btn-lg">Try another search</button></a>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>    
+        @if($loopCount>0)
             <div class="jumbotron vertical-center">
-                   
-                    
                     @for($i=0; $i<$loopCount-1; $i++)
                     <hr>
                         <ul><h3>{{ $nameArray[$i] }}  </h3></ul>
@@ -34,7 +42,8 @@ Let's Find a Venue
                         <ul><strong><a href="/detail/{{$place_id_array[$i]}}"><button style="font-weight:bold;" class="btn hvr-wobble-vertical" >Details</button></a></strong></ul>
                         <hr>
                     @endfor
-            </div>
+          </div>
+          @endif
     </body>
 @endsection
 

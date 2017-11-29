@@ -107,6 +107,8 @@ class SearchController extends Controller
 
 
     public function getGeocode(Request $request){
+
+        $empty_search=false;
         
         // *** GEOCODE INPUT  ***
         if(null !== $request->input('city')){
@@ -231,12 +233,20 @@ class SearchController extends Controller
         // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
 
         }
-
+    
+        if(empty($recent_searches)){
+            $empty_search=true;
+        }
+        else{
+            $empty_search=false;
+        }
+        
 
     // *** END OF FOR LOOP END OF FOR LOOP END OF FOR LOOP ***
 
         return view('/places/display', compact(
                     
+                    'empty_search',
                     'recent_search_timestamp',
                     'recent_keyword',
                     'recent_city',

@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('css/hover.css') }}" rel="stylesheet" media="all">
+        <!-- Add the stylesheet to the head -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('clippy.css') }}" media="all">
 
             <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
             <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -85,17 +87,21 @@
             </div>
         </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+
+    <div class="container">
+        <div class="inner-container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
             
     </div>
 </div>
 @yield('content')
 
     </div>
+</div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

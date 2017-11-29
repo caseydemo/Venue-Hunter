@@ -25,7 +25,7 @@
         <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
                 <h1 class="display-3">VENUE HUNTER</h1>
-                <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
+                <p class="lead">Give us a city. We'll give you numbers to call.</p>
                 @if (Route::has('login'))
                     @if (Auth::check())
                         <p style="text-align:center" class="play">
