@@ -6,11 +6,30 @@ Let's Find a Venue
 
 @section('content')
 <body>
+
+
+    <form class="form-horizontal" method="post" action="/contacts">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
+        <input type="hidden" name="business_name" value="{{ $name }}"> 
+        <input type="hidden" name="place_id" value="{{ $place_id }}">
+        <input type="hidden" name="address" value="{{ $address }}">
+        <input type="hidden" name="phone" value="{{ $phone }}">
+        <input type="hidden" name="website" value="{{ $website }}">
+        <input type="hidden" name="lattitude" value="{{ $lattitude }}">
+         <input type="hidden" name="longitude" value="{{ $longitude }}">
+            <p><button type="submit" name="button" value="save" class="btn-lg hvr-pulse">Add to Contacts</button></p>
+    </form>
+
+
+
+
+
+
      <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
                 <h1 class="medium-title">{{ $name }}</h1>
                 <p class="lead">{{ $address }}</p>
-                <p class="lead">{{ $phone_number }}</p>
+                <p class="lead">{{ $phone }}</p>
 
         <ul><strong>Open Now:
         @if($open_now) 

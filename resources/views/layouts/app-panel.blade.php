@@ -51,6 +51,7 @@
                     
                         <li><a class="nav-link" href="{{ url('/home') }}">Search</a></li>
                          <li><a class="nav-link" href="{{ url('/saved') }}">Saved Searches</a></li>
+                         <li><a class="nav-link" href="{{ url('/contacts') }}">Contacts</a></li>
                         
 
                     </ul>

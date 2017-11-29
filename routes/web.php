@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Auth::routes();
 
 // Route::get('/', 'GuzzleController@getInput');
@@ -31,3 +35,5 @@ Route::get('/detail/{place_id}', 'SearchController@getDetailSearch');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/saved', 'SearchController@showSavedSearches');
+
+Route::resource('/contacts', 'ContactController');

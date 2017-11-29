@@ -12,6 +12,7 @@ Let's Find a Venue
             <div class="jumbotron vertical-center">
                 <h1 class="medium-title">{{ $cityName }}</h1>
                 <h3 style="font-weight:bold">{{ $searchDate }}</h3>
+                <p><button class="btn-lg hvr-pulse" onclick="window.print()">Print Results</button></p>
                  <form class="form-horizontal" method="post" action="/places">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
                     <input type="hidden" name="city" value="{{ $cityName }}"> 

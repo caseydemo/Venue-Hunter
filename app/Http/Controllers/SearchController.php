@@ -225,13 +225,6 @@ class SearchController extends Controller
 
         $recent_searches = \App\Search::get();
         
-  
-
-        
-        
-        // $recent_keyword = $recent_searches[0]['attributes']['keyword'];
-        // $recent_search_timestamp = $recent_searches[0]['attributes']['keyword'];
-
         }
     
         if(empty($recent_searches)){
@@ -291,11 +284,10 @@ class SearchController extends Controller
         
         $detailJSON = json_decode($tempJson, true);
 
-
         $place_id=$detailJSON['result']['place_id'];
 
         $loopCount = count($detailJSON['result']);      
-        
+
         if(isset($detailJSON['result']['formatted_address'])){
             $address = $detailJSON['result']['formatted_address'];
         }
@@ -303,10 +295,10 @@ class SearchController extends Controller
             $address='';
         }       
         if(isset($detailJSON['result']['formatted_phone_number'])){
-            $phone_number = $detailJSON['result']['formatted_phone_number'];
+            $phone = $detailJSON['result']['formatted_phone_number'];
         }
         else{
-            $phone_number = 'N/A';
+            $phone = 'N/A';
         }
         
         $icon=$detailJSON['result']['icon'];
@@ -367,6 +359,9 @@ class SearchController extends Controller
                 $review_bool=false;
                 
             }
+            $lattitude = $detailJSON['result']['geometry']['location']['lat'];
+            $longitude = $detailJSON['result']['geometry']['location']['lng'];
+            
 
             if(isset($detailJSON['result']['website'])){
                 $website=$detailJSON['result']['website'];
@@ -375,18 +370,20 @@ class SearchController extends Controller
                 $website='#';
             }
 
-
-
+            $place_id = $detailJSON['result']['place_id'];
 
         $map_url=$detailJSON['result']['url'];
 
         $url='//www.google.com/maps/embed/v1/place?q=place_id:' . $place_id . '&zoom=17&key=AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM';
 
         return view('/places/detail', compact(
+            'place_id',
+            'lattitude',
+            'longitude',
             'url',
             'name', 
             'address', 
-            'phone_number', 
+            'phone', 
             'open_now', 
             'hours',
             'map_url', 

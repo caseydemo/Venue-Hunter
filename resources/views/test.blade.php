@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
 	<title>TEST</title>
 </head>
 <body>
@@ -28,23 +30,31 @@
 		</tr>
 	</table>
 
-<script>
-	var doc = new jsPDF();          
-	var elementHandler = {
-	  '#ignorePDF': function (element, renderer) {
-	    return true;
-	  }
-	};
-	var source = window.document.getElementsByTagName("body")[0];
-	doc.fromHTML(
-	    source,
-	    15,
-	    15,
-	    {
-	      'width': 180,'elementHandlers': elementHandler
-	    });
+	div id="content">
+     <h3>Hello, this is a H3 tag</h3>
 
-	doc.output("dataurlnewwindow");
+    <p>a pararaph</p>
+	</div>
+	<div id="editor"></div>
+	<button id="cmd">generate PDF</button>
+
+<script>
+
+	var doc = new jsPDF();
+	var specialElementHandlers = {
+	    '#editor': function (element, renderer) {
+	        return true;
+	    }
+	};
+
+	$('#cmd').click(function () {
+	    doc.fromHTML($('#content').html(), 15, 15, {
+	        'width': 170,
+	            'elementHandlers': specialElementHandlers
+	    });
+	    doc.save('sample-file.pdf');
+	});
+
 </script>
 
 
