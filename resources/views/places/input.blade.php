@@ -6,7 +6,7 @@ Let's Find a Venue
 
 @section('content')
 <div class="flex-center position-ref full-height">
-            <div class="jumbotron vertical-center">
+            <div class="jumbotron input vertical-center">
                 <h1 class="medium-title">WHERE DO YOU WANT TO LOOK?</h1>
 
 <form action="/" method="post" class="input form-inline">

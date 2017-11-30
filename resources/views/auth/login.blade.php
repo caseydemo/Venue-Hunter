@@ -4,8 +4,8 @@
 
 <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
-                <h1 class="display-3">VENUE HUNTER</h1>
-                <p>Login</p>
+                <h1 class="medium-title">VENUE HUNTER</h1>
+                <h2 class="medium-title">Login</h2>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
@@ -39,25 +39,25 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                                     </label>
                                 </div>
-                            </div>
+                            
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                      <button type="submit" class="btn btn-primary">
+                            
+                                      <button type="submit" class="btn hvr-bounce-to-right">
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <p><a href="{{ route('password.request') }}">
                                     Forgot Your Password?
-                                </a>
-                            </div>
+                                </a></p>
+                            
                         </div>
                     </form>
                 </div>

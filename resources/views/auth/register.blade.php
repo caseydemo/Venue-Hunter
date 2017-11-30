@@ -4,9 +4,8 @@
 <div class="container">
     <div class="row">
         <div class="jumbotron vertical-center">
-                <h1 class="display-3">VENUE HUNTER</h1>
-                <p class="lead">Give us a city. We'll give you numbers to start calling.</p>
-                    <div class="panel-heading">Register</div>
+                <h1 class="medium-title">VENUE HUNTER</h1>
+                    <h2 class="medium-title">Register</h2>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
@@ -63,11 +62,10 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            
+                                <button type="submit" class="btn hvr-bounce-to-right">
                                     Register
                                 </button>
-                            </div>
                         </div>
                     </form>
                 </div>

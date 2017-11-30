@@ -25,23 +25,23 @@ Let's Find a Venue
                 <p class="lead">{{ $address }}</p>
                 <p class="lead"><a href="tel:'{{ $phone }}'">{{ $phone }}</a> </p>
 
-        <ul><strong>Open Now:
+        <strong>Open Now:
         @if($open_now) 
-            Yes</strong></ul>
+            Yes</strong>
         @else
-            No</strong></ul>
+            No</strong>
         @endif
-        <ul><img src="{{ $icon }}"/></ul>
+        <img class="business-icon" src="{{ $icon }}"/>
         @if($website!= '#')
-            <ul>
+            
             <a href="{{ $website }}" target="_blank"><button class="btn-lg hvr-pulse">{{$name}}'s Website</button></a>
 
         @else
-            <ul>Website N/A</ul>
+            Website N/A
         @endif
         <button type="submit" name="button" value="save" form="detail" class="btn-lg hvr-pulse">Add to Contacts</button>
             <button class="btn-lg hvr-pulse" onclick="window.print()">Print Results</button>
-        </ul>
+        
         
         @if($hours[0]!='N/A')
             <ul><strong>Hours:</ul></strong> 
@@ -52,17 +52,24 @@ Let's Find a Venue
         </strong>
 
         <!-- IFRAME -->
-        <iframe class="iframe" src="{{$url}}">
-        </iframe>
+        
+            <iframe class="i-frame" src="{{$url}}">
+            </iframe>
+        
        
         @if($review_bool)
-            <ul><h2>Reviews:</h2></ul>
+            <h2>Reviews:</h2>
             <hr>
             @for($i=0; $i<3; $i++)
-                <ul><h3>{{$i+1}}. By:{{ $author_name_array[$i] }}, {{ $time_description_array[$i]}}</h3></ul>
+                <h3>{{$i+1}}. By:{{ $author_name_array[$i] }}, {{ $time_description_array[$i]}}</h3>
                 <div class="review-body">
-                    <ul>{{ $rating_array[$i] }} Stars</ul>
-                    <ul>{{ $review_text_array[$i] }}</ul>
+                    @for($j=0; $j<$rating_array[$i]; $j++)
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    @endfor
+                    <p>{{$rating_array[$i]}} Stars</p>
+                    <p>{{ $review_text_array[$i] }}</p>
+               
+
                 </div>
                 <hr>
                 <br>
