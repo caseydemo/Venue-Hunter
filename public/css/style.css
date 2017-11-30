@@ -62,7 +62,9 @@ a.navbar-brand{
 
 .jumbo-center{
 	margin: auto;
+	margin-top: 0px;
 	width: 75%;
+	padding:0px;
 }
 ul{
 	font-family: 'Raleway', sans-serif;
@@ -78,6 +80,7 @@ ul{
 
 div.flex-center.position-ref.full-height{
 position:relative;
+	padding-top:0px;
     margin:0 auto;
     clear:left;
     height:auto;
@@ -142,7 +145,7 @@ p.input-label{
 .table.table-striped{
 	/*margin: 50%;*/
 	
-	margin-top: 45px;
+	margin-top: 10px;
 	margin-left: 0px;
 	padding:0px;
 	width: 100%;

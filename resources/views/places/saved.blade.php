@@ -9,7 +9,7 @@ Let's Find a Venue
 
 <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
-                <h1 class="medium-title">{{ \Auth::user()->name }}'s Recent Searches</h1>
+                <h1 class="medium-title">{{ \Auth::user()->name }}'s Saved Searches</h1>
 @if(!empty(\Auth::user()->name))
 	@for($i=0; $i<$search_count-1; $i++)
 		<form style="display:none" action="/recent-search" method="post" class="input form-inline" id="{{$i}}">
@@ -27,12 +27,12 @@ Let's Find a Venue
 	<div class="jumbo-center">
 	@if($search_count>1)
 		<table class="table table-striped">
-			<tr>
+			<thead>
 			    <th>City</th>
 			    <th>Keyword</th> 
 			    <th>Searched At</th>
 			    <th>Delete</th>
-		  	</tr>
+		  	</thead>
 		@for($i=0; $i<$search_count-1; $i++)
 			@if($user_id[$i]==\Auth::user()->name)		  
 					  	<tr>
