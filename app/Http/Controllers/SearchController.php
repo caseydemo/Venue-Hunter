@@ -573,7 +573,7 @@ class SearchController extends Controller
     }
     public function showSavedSearches(){
 
-        $recent_searches = \App\Search::get();
+        $recent_searches = \App\Search::orderBy('id', 'desc')->get();
         $search_count = count($recent_searches)+1;
 
         for($i=0; $i<$search_count-1; $i++){
