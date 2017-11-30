@@ -2,7 +2,6 @@
 
 @section('title')
 Let's Find a Venue
-<a href="/home"><button class="btn btn-alert">Back to search</button></a>
 
 @endsection
 
@@ -11,8 +10,9 @@ Let's Find a Venue
         <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
                 <h1 class="medium-title">{{ $cityName }}</h1>
+                @if(!$empty_search)
                 <h3 style="font-weight:bold">{{ $searchDate }}</h3>
-                <p><button class="btn-lg hvr-pulse" onclick="window.print()">Print Results</button></p>
+                @endif
                  <form class="form-horizontal" method="post" action="/places">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
                     <input type="hidden" name="city" value="{{ $cityName }}"> 
@@ -32,7 +32,7 @@ Let's Find a Venue
                     @endif
                 </form>
             </div>
-        </div>    
+                    </div>
         @if($loopCount>0)
             <div class="jumbotron vertical-center">
                     @for($i=0; $i<$loopCount-1; $i++)

@@ -26,7 +26,7 @@ Auth::routes();
 
 Route::post('/recent-search', 'SearchController@getRecentSearch');
 
-Route::post('/show-contacts', 'ContactController@getDetailSearch');
+Route::get('/show-contacts/{place_id}', 'ContactController@getDetailSearch');
 
 Route::post('/', 'SearchController@getGeocode');
 

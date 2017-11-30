@@ -8,7 +8,7 @@ Let's Find a Venue
 <body>
 
 
-    <form class="form-horizontal" method="post" action="/contacts">
+    <form class="form-horizontal" method="post" action="/contacts" id="detail">
         <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
         <input type="hidden" name="business_name" value="{{ $name }}"> 
         <input type="hidden" name="place_id" value="{{ $place_id }}">
@@ -17,19 +17,13 @@ Let's Find a Venue
         <input type="hidden" name="website" value="{{ $website }}">
         <input type="hidden" name="lattitude" value="{{ $lattitude }}">
          <input type="hidden" name="longitude" value="{{ $longitude }}">
-            <p><button type="submit" name="button" value="save" class="btn-lg hvr-pulse">Add to Contacts</button></p>
+            
     </form>
-
-
-
-
-
-
      <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
                 <h1 class="medium-title">{{ $name }}</h1>
                 <p class="lead">{{ $address }}</p>
-                <p class="lead">{{ $phone }}</p>
+                <p class="lead"><a href="tel:'{{ $phone }}'">{{ $phone }}</a> </p>
 
         <ul><strong>Open Now:
         @if($open_now) 
@@ -39,10 +33,15 @@ Let's Find a Venue
         @endif
         <ul><img src="{{ $icon }}"/></ul>
         @if($website!= '#')
-            <ul><a href="{{ $website }}" target="_blank"><button class="btn btn-lg hvr-bounce-to-right">{{$name}}'s Website</button></a></ul>
+            <ul>
+            <a href="{{ $website }}" target="_blank"><button class="btn-lg hvr-pulse">{{$name}}'s Website</button></a>
+
         @else
             <ul>Website N/A</ul>
         @endif
+        <button type="submit" name="button" value="save" form="detail" class="btn-lg hvr-pulse">Add to Contacts</button>
+            <button class="btn-lg hvr-pulse" onclick="window.print()">Print Results</button>
+        </ul>
         
         @if($hours[0]!='N/A')
             <ul><strong>Hours:</ul></strong> 

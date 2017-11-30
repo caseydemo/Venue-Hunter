@@ -102,7 +102,7 @@ class SearchController extends Controller
       
             $search = \App\Search::find($id);
             $search->delete();
-            return redirect ('/home');
+            return redirect ('/saved');
     }
 
 

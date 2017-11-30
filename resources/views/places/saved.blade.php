@@ -23,7 +23,7 @@ Let's Find a Venue
 	@endfor
 
 	<div style="margin-top: 20px;" class="flex-center position-ref full-height">
-    <div class="jumbotron vertical-center">
+    
 	<div class="jumbo-center">
 
 	<table class="table table-striped">

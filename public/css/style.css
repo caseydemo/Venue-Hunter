@@ -94,6 +94,7 @@ a:hover{
 .btn-lg{
 	font-weight: bold;
 	background-color: #F6B352;
+	display: inline-block;
 }
 .iframe{
 	width: 50%;
@@ -136,7 +137,7 @@ p.input-label{
 .table.table-striped{
 	/*margin: 50%;*/
 	
-	margin-top: 75px;
+	margin-top: 45px;
 	margin-left: 0px;
 	padding:0px;
 	width: 100%;
@@ -144,10 +145,12 @@ p.input-label{
 .clippy{
 	display: block;
     margin: auto;
+    margin-bottom: 0px;
     width: 50%;	
 }
 .search-error{
-	font-size: 25px;
+	font-weight: bold;
+	font-size: 250px;
 	text-align: center;
 }
 .table-headings{
@@ -156,13 +159,41 @@ p.input-label{
 	text-align: center;
 }
 
-.table-bordered{
-	display: block;
+.table{
 	margin: auto;
 	margin-top: 50px;
-	border: 3px solid black;
-	border-collapse: collapse;
 }
 .jumbotron.vertical-center{
 	text-align: center;
+	margin-bottom: 0px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #bbb;
+}
+td, th {
+    border-top: 1px solid #ddd;
+    padding: 4px 8px;
+}
+tbody tr:nth-child(even) td {
+    background-color: #eee;
+}
+@media screen and (max-width: 600px) {
+table {width:100%;}
+thead {display: none;}
+tr:nth-of-type(2n) {background-color: inherit;}
+tr td:first-child {background: #f0f0f0; font-weight:bold;font-size:1.3em;}
+tbody td {display: block;  width:100%; text-align:center;}
+tbody td:before { 
+    content: attr(data-th); 
+    display: block;
+    text-align:center;  
+  }
+}
+.spacer{
+	height: 100px;
+}
+form.form-horizontal{
+	margin-bottom: 0px;
 }
