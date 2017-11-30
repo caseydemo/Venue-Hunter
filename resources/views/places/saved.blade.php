@@ -25,33 +25,37 @@ Let's Find a Venue
 	<div style="margin-top: 20px;" class="flex-center position-ref full-height">
     
 	<div class="jumbo-center">
-
-	<table class="table table-striped">
-		<tr>
-		    <th>City</th>
-		    <th>Keyword</th> 
-		    <th>Searched At</th>
-		    <th>Delete</th>
-	  	</tr>
-	@for($i=0; $i<$search_count-1; $i++)
-		@if($user_id[$i]==\Auth::user()->name)		  
-				  	<tr>
-				  		<td><button style="font-weight: bold" class="btn hvr-bounce-to-right" type="submit" form="{{$i}}">{{ $recent_city[$i] }}</button></td>
-					    <td>{{ $recent_keyword[$i] }}</td>
-					    <td>{{ $searched_at[$i] }}</td>
-					     <td>
-						     <form class="button-form" method="post" action="/places/{{ $recent_search_id[$i] }}">
-						     	{{ csrf_field() }}
-	      						{{ method_field('DELETE') }}
-	      						<button class="btn">
-	      						<i class="fa fa-trash" aria-hidden="true"></i>
-	      						</button>
-						     </form>
-						 </td>
-					</tr>
-				@endif
-		@endfor
-		</table>
+	@if($search_count>1)
+		<table class="table table-striped">
+			<tr>
+			    <th>City</th>
+			    <th>Keyword</th> 
+			    <th>Searched At</th>
+			    <th>Delete</th>
+		  	</tr>
+		@for($i=0; $i<$search_count-1; $i++)
+			@if($user_id[$i]==\Auth::user()->name)		  
+					  	<tr>
+					  		<td><button style="font-weight: bold" class="btn hvr-bounce-to-right" type="submit" form="{{$i}}">{{ $recent_city[$i] }}</button></td>
+						    <td>{{ $recent_keyword[$i] }}</td>
+						    <td>{{ $searched_at[$i] }}</td>
+						     <td>
+							     <form class="button-form" method="post" action="/places/{{ $recent_search_id[$i] }}">
+							     	{{ csrf_field() }}
+		      						{{ method_field('DELETE') }}
+		      						<button class="btn">
+		      						<i class="fa fa-trash" aria-hidden="true"></i>
+		      						</button>
+							     </form>
+							 </td>
+						</tr>
+					@endif
+			@endfor
+			</table>
+	@else
+	<div class="search-error">No Saved Searches Yet!</div>
+	<a href="/home"><button class="btn hvr-bounce-to-right">Let's find a venue</button></a>
+	@endif
 @endif
 			</div>
 		</div>

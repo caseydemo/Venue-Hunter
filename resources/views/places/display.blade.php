@@ -24,11 +24,11 @@ Let's Find a Venue
                         <p><button type="submit" name="button" value="save" class="btn-lg hvr-pulse">Save Search</button></p>
                     @endif
                     @if($empty_search)
-                         <p class="search-error"> Sorry - your search returned no results. </p>
+                         <div class="search-error"> Sorry - your search returned no results. </div>
                         <div class="clippy">
                             <img src="{{ asset('clippy_animation.gif') }}">
-                            <a href="/input"><button class="btn btn-lg">Try another search</button></a>
                         </div>
+                         <a style="margin:auto;" href="/input"><button class=" btn-lg hvr-bounce-to-right block-button">Try another search</button></a>
                     @endif
                 </form>
             </div>
