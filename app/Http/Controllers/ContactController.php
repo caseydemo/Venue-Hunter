@@ -28,9 +28,10 @@ class ContactController extends Controller
             $lattitude[$i] = $contacts[$i]['attributes']['lattitude'];
             $longitude[$i] = $contacts[$i]['attributes']['longitude'];
             $saved_at[$i] = $contacts[$i]['attributes']['saved_at'];
+            $contact_id[$i]=$contacts[$i]['attributes']['id'];
         }
 
-       return view('places.contacts', compact('loop_count', 'user_id', 'place_id', 'business_name', 'address', 'phone', 'website', 'lattitude', 'longitude', 'saved_at'));
+       return view('places.contacts', compact('contact_id', 'loop_count', 'user_id', 'place_id', 'business_name', 'address', 'phone', 'website', 'lattitude', 'longitude', 'saved_at'));
     }
 
     /**
@@ -64,7 +65,7 @@ class ContactController extends Controller
         $contact->saved_at = Carbon::now()->timezone('America/New_York')->toDayDateTimeString();
         $contact -> save();
 
-        return redirect('/');    
+        return redirect('/contacts');    
            }
 
     /**
@@ -109,7 +110,9 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = \App\Contact::find($id);
+        $contact->delete();
+        return redirect ('/contacts');
     }
 
 public function getDetailSearch($place_id){

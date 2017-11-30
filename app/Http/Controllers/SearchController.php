@@ -47,7 +47,7 @@ class SearchController extends Controller
         $search -> save();
 
         // dd($search->searched_at);
-        return redirect('/home');    
+        return redirect('/saved');    
     }
 
     /**

@@ -53,7 +53,7 @@ Let's Find a Venue
 			@endfor
 			</table>
 	@else
-	<div class="search-error">No Saved Searches Yet!</div>
+	<div class="search-error">No Saved Searches</div>
 	<a href="/home"><button class="btn hvr-bounce-to-right">Let's find a venue</button></a>
 	@endif
 @endif

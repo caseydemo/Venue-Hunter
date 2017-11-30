@@ -129,7 +129,7 @@ p.input-label{
 }
 #app-navbar-collapse{
 	margin-left: 0px;
-	width: 900px;
+	width: 100%;
 }
 #app{
 	/*background-color: #383A3F;*/
@@ -152,6 +152,7 @@ p.input-label{
 	font-weight: bold;
 	font-size: 25px;
 	text-align: center;
+	margin-bottom: 20px;
 }
 .table-headings{
 	font-weight: bold;
@@ -200,4 +201,7 @@ form.form-horizontal{
 .block-button{
 	display: block;
 	margin:auto;
+}
+.nav.navbar-nav.navbar-right{
+	margin-right: 10px;
 }
