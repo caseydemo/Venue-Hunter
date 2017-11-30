@@ -16,7 +16,7 @@ class ContactController extends Controller
     public function index()
     {
 
-        $contacts = \App\Contact::get();
+        $contacts = \App\Contact::orderBy('id', 'desc')->get();
         $loop_count = count($contacts);
         for($i=0; $i<$loop_count; $i++){
             $user_id[$i] = $contacts[$i]['attributes']['user_id'];
@@ -30,6 +30,7 @@ class ContactController extends Controller
             $saved_at[$i] = $contacts[$i]['attributes']['saved_at'];
             $contact_id[$i]=$contacts[$i]['attributes']['id'];
         }
+
 
        return view('places.contacts', compact('contact_id', 'loop_count', 'user_id', 'place_id', 'business_name', 'address', 'phone', 'website', 'lattitude', 'longitude', 'saved_at'));
     }

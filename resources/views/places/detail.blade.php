@@ -25,19 +25,16 @@ Let's Find a Venue
                 <p class="lead">{{ $address }}</p>
                 <p class="lead"><a href="tel:'{{ $phone }}'">{{ $phone }}</a> </p>
 
-        <strong>Open Now:
+        <strong><h2>Open Now:
         @if($open_now) 
-            Yes</strong>
+            Yes <i class="fa fa-clock-o" aria-hidden="true"></i></h2></strong>
         @else
-            No</strong>
+            No</h2></div>
         @endif
         <img class="business-icon" src="{{ $icon }}"/>
         @if($website!= '#')
             
             <a href="{{ $website }}" target="_blank"><button class="btn-lg hvr-pulse">{{$name}}'s Website</button></a>
-
-        @else
-            Website N/A
         @endif
         <button type="submit" name="button" value="save" form="detail" class="btn-lg hvr-pulse">Add to Contacts</button>
             <button class="btn-lg hvr-pulse" onclick="window.print()">Print Results</button>

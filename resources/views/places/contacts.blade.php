@@ -18,7 +18,7 @@ Contacts Page
 			<th class="table-headings">Website</th>
 			<th class="table-headings">Saved At</th>
 			<th class="table-headings">Delete</th>
-		</thead>>
+		</thead>
 		@for($i=0; $i<$loop_count; $i++)
 		<tr>
 			<td><strong><a href="/show-contacts/{{$place_id[$i]}}"><button style="font-weight:bold;" class="btn hvr-wobble-vertical" >{{ $business_name[$i] }}</button></a></strong></td>

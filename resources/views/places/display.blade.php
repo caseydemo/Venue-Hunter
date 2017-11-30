@@ -8,7 +8,7 @@ Let's Find a Venue
 @section('content')
     <body>
         <div class="flex-center position-ref full-height">
-            <div class="jumbotron vertical-center">
+            <div class="jumbotron searches vertical-center">
                 <h1 class="medium-title">{{ $cityName }}</h1>
                 @if(!$empty_search)
                 <h3 style="font-weight:bold">{{ $searchDate }}</h3>
@@ -21,7 +21,7 @@ Let's Find a Venue
                     <input type="hidden" name="longitude" value="{{ $longitude }}">
                     <input type="hidden" name="searchDate" value="{{$searchDate}}">
                     @if(!$empty_search)
-                        <p><button type="submit" name="button" value="save" class="btn-lg hvr-pulse">Save Search</button></p>
+                        <p><button type="submit" name="button" value="save" class="btn-lg saveme hvr-pulse">Save Search</button></p>
                     @endif
                     @if($empty_search)
                          <div class="search-error"> Sorry - your search returned no results. </div>
@@ -37,10 +37,10 @@ Let's Find a Venue
             <div class="jumbotron vertical-center">
                     @for($i=0; $i<$loopCount-1; $i++)
                     <hr>
-                        <ul><h3>{{ $nameArray[$i] }}  </h3></ul>
-                        <ul><strong>{{ $vicinityArray[$i] }}</strong></ul>
-                        <ul><strong>Open Now: {{ $open_now_array[$i] }}</strong></ul>        
-                        <ul><strong><a href="/detail/{{$place_id_array[$i]}}"><button style="font-weight:bold;" class="btn hvr-wobble-vertical" >Details</button></a></strong></ul>
+                        <h2 style="font-weight: bold;">{{ $nameArray[$i] }}  </h2>
+                        <div class="display-list">{{ $vicinityArray[$i] }}</div>
+                        <div class="display-list">Open Now: {{ $open_now_array[$i] }}</div>       
+                        <a href="/detail/{{$place_id_array[$i]}}"><button style="font-weight:bold;" class="btn hvr-wobble-vertical" >Details</button></a>
                         <hr>
                     @endfor
           </div>

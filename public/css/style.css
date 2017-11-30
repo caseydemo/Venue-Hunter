@@ -26,7 +26,6 @@ h1.display-3{
 h1.medium-title{
 	font-size: 50px;
 	font-family: 'Monoton', cursive;
-	font-weight: bolder;
 	padding-top: 35px;
 }
 h2.medium-title{
@@ -221,8 +220,12 @@ form.form-horizontal{
 	width: 40%;
 	height: 200px;
 }
+.display-list{
+	display: block;
+	font-weight: bold;
+}
 
-
+/*MOBILE VIEW*/
 
 @media screen and (max-width: 600px) {
 h1.display-3 {
@@ -233,9 +236,11 @@ h1.display-3 {
 }
 h1.medium-title{
 	font-size: 2.0em;
-	margin:auto;
-	margin-top: 0px;
-	padding-top: 0px;
+	margin:0px;
+	padding:0px;
+}
+h3{
+	font-size: 15px;
 }
 .inner-container{
 	margin-top: 0px;
@@ -263,15 +268,30 @@ table {width:100%;}
 thead {display: none;}
 tr:nth-of-type(2n) {background-color: inherit;}
 tr td:first-child {background: #f0f0f0; font-weight:bold;font-size:1.3em;}
-tbody td {display: block;  width:100%; text-align:center;}
+tbody td {
+	display: block;  
+	width:100%; 
+	text-align:center;
+	margin:0px;
+	padding:0px;
+}
 tbody td:before { 
     content: attr(data-th); 
     display: block;
     text-align:center;  
   }
+ tbody p{
+ 	font-size: 10px;
+ 	background-color: red;
+ }
 .btn-lg{
 	margin:5px;
-	width: 70%;
+	width: 60%;
+	height: auto;
+}
+.btn-lg.saveme{
+	margin:5px;
+	width: 50%;
 	height: auto;
 }
 .i-frame{
@@ -285,6 +305,13 @@ tbody td:before {
 .jumbotron.input{
 	height: 230px;
 }
+.jumbotron.searches{
+	height: 175px;
+}
+.display-list{
+	display: block;
+}
+
 }
 
 
