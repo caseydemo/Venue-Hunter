@@ -145,6 +145,7 @@ class SearchController extends Controller
         $tempGeoJSON = $geoRes->getBody();
 
         $geoJSON = json_decode($tempGeoJSON, true);
+        // dd($geoJSON['results']);
 
 
         $lattitude = $geoJSON['results'][0]['geometry']['location']['lat'];

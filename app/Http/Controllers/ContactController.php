@@ -14,7 +14,22 @@ class ContactController extends Controller
      */
     public function index()
     {
-       return view('places.contacts');
+
+        $contacts = \App\Contact::get();
+        $loop_count = count($contacts);
+        for($i=0; $i<$loop_count; $i++){
+            $user_id[$i] = $contacts[$i]['attributes']['user_id'];
+            $place_id[$i] = $contacts[$i]['attributes']['place_id'];
+            $business_name[$i] = $contacts[$i]['attributes']['business_name'];
+            $address[$i] = $contacts[$i]['attributes']['address'];
+            $phone[$i] = $contacts[$i]['attributes']['phone'];
+            $website[$i] = $contacts[$i]['attributes']['website'];
+            $lattitude[$i] = $contacts[$i]['attributes']['lattitude'];
+            $longitude[$i] = $contacts[$i]['attributes']['longitude'];
+            $saved_at[$i] = $contacts[$i]['attributes']['saved_at'];
+        }
+
+       return view('places.contacts', compact('loop_count', 'user_id', 'place_id', 'business_name', 'address', 'phone', 'website', 'lattitude', 'longitude', 'saved_at'));
     }
 
     /**
@@ -59,7 +74,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        return 'farts';    }
+        
+            }
 
     /**
      * Show the form for editing the specified resource.

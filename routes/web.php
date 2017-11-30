@@ -26,6 +26,8 @@ Auth::routes();
 
 Route::post('/recent-search', 'SearchController@getRecentSearch');
 
+Route::post('/show-contacts', 'ContactController@getDetailSearch');
+
 Route::post('/', 'SearchController@getGeocode');
 
 Route::resource('/places', 'SearchController');
