@@ -90,25 +90,42 @@ class TwitterController extends Controller
     public function getTwitterHandle(){
 
 
-        $keyword1 = 'lexington';
-        $keyword2 = ', ky';
+        $keyword1 = 'crossings';
+        $keyword2 = ', lexington';
         $q=$keyword1 . $keyword2;
 
 
 
         return Twitter::getUsersSearch(['q' => $q, 'count' => 20, 'format' => 'json']);
     }
+
     public function getGeo(){
         $name = 'crossings';
 
-        return Twitter::getGeoSimilar(['name' => $name, 'lat' => '38.0467441', 'long' => '-84.4966575', 'count' => 20, 'format' => 'json']);
+
+        return Twitter::getGeoSearch(['name' => 'crossings', 'lat' => '38.0467441', 'long' => '-84.4966575', 'count' => 20, 'format' => 'json']);
     }
+    
     public function getUserLookup(){
-        return Twitter::getUsersLookup(['screen_name' => 'crossingsoflex', 'count' => 20, 'format' => 'json']);
+        $screen_name='crossingsoflex';
+        $id='106221667';
+
+        return Twitter::getUsersLookup(['user_id' => $id, 'count' => 20, 'format' => 'json']);
+    }
+
+    public function getUserTimeline(){
+        return Twitter::getUserTimeline([ 'user_id' => '106221667',
+            'count' => 20, 'format' => 'json'
+        ]);
+    }
+
+    public function getUsersSearch(){
+        return Twitter::getGeoSearch(['name' => 'crossings', 'q' => 'lexington, ky', 'count' => 20, 'format' => 'json']);
     }
 
 }
 
 // crossings: lat: 38.0467441 long: -84.4966575
-
+// crossings id: 106221667
+// crossingsoflex
 // 'q' => '38.0406', 

@@ -362,7 +362,7 @@ class SearchController extends Controller
             }
             $lattitude = $detailJSON['result']['geometry']['location']['lat'];
             $longitude = $detailJSON['result']['geometry']['location']['lng'];
-            dd($detailJSON['result']['geometry']['location']);
+            // dd($detailJSON['result']['geometry']['location']);
             // get this information to the twitter app???
 
             if(isset($detailJSON['result']['website'])){

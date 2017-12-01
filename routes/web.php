@@ -51,5 +51,6 @@ Route::get('/getUser', 'TwitterController@getTwitterHandle');
 
 Route::get('/getUserLookup', 'TwitterController@getUserLookup');
 
+Route::get('/getUserTimeline', 'TwitterController@getUserTimeline');
 
-
+Route::get('/getUsersSearch', 'TwitterController@getUsersSearch');
