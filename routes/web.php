@@ -39,3 +39,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/saved', 'SearchController@showSavedSearches');
 
 Route::resource('/contacts', 'ContactController');
+
+Route::get('/userTimeline', function()
+{
+	return Twitter::getUserTimeline(['screen_name' => 'realDonalTrump', 'count' => 20, 'format' => 'json']);
+});
+
+Route::get('/getGeo', 'TwitterController@getGeo');
+
+Route::get('/getUser', 'TwitterController@getTwitterHandle');
+
+Route::get('/getUserLookup', 'TwitterController@getUserLookup');
+
+
+
