@@ -1,4 +1,9 @@
 /*color scheme is lolcolors 1477 */
+#map {
+height: 500px;
+width: 500px;
+margin: auto;
+}
 body{
 	background-color: #383A3F;;
 	font-family: 'Raleway', sans-serif;

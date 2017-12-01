@@ -16,8 +16,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('test');
+Route::get('/map', function () {
+    return view('places.map');
 });
 
 Auth::routes();
@@ -25,6 +25,8 @@ Auth::routes();
 // Route::get('/', 'GuzzleController@getInput');
 
 Route::post('/recent-search', 'SearchController@getRecentSearch');
+
+Route::post('/geolocate', 'SearchController@geolocateSearch'); // if user location is known
 
 Route::get('/show-contacts/{place_id}', 'ContactController@getDetailSearch');
 
@@ -54,3 +56,5 @@ Route::get('/getUserLookup', 'TwitterController@getUserLookup');
 Route::get('/getUserTimeline', 'TwitterController@getUserTimeline');
 
 Route::get('/getUsersSearch', 'TwitterController@getUsersSearch');
+
+

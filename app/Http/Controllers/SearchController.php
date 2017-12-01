@@ -615,5 +615,20 @@ class SearchController extends Controller
         return view('places.saved', compact('recent_search_id', 'longitude', 'lattitude', 'user_id', 'search_count', 'recent_city', 'recent_keyword', 'searched_at'));
     }
 
+    public function geolocateSearch(Request $request){
+
+        $keyword =  $request->input('keyword');
+        $lattitude = $request->input('lattitude');
+        $longitude = $request->input('longitude');
+        
+
+        $nearbySearchJSON = $this->getNearbySearch($lattitude, $longitude, $keyword);
+
+        dd($nearbySearchJSON);
+
+
+       
+        return 'fart';
+    }
 
 }
