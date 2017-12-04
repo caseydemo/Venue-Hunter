@@ -615,20 +615,152 @@ class SearchController extends Controller
         return view('places.saved', compact('recent_search_id', 'longitude', 'lattitude', 'user_id', 'search_count', 'recent_city', 'recent_keyword', 'searched_at'));
     }
 
+
     public function geolocateSearch(Request $request){
 
-        $keyword =  $request->input('keyword');
-        $lattitude = $request->input('lattitude');
-        $longitude = $request->input('longitude');
+
+        $nearbyClient = new Client();
+        $lat = round($request->input('lattitude'), 4);
+        $long = round($request->input('longitude'), 4);
+        $radius = 5000;
+        $type = 'bar';
+        
+        if(empty($keyword)){
+            $keyword = 'bar';
+        }
+        // $keyword = 'bar';
+        $key = 'AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM';
+        
+        // api call with options
+        $res = $nearbyClient->get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?' 
+            . 'location=' . $lat . ',' . $long . '&' 
+            . 'radius=' . $radius . '&' 
+            . 'type=' . $type . '&' 
+            . 'keyword=' . $keyword . '&' 
+            . 'key=' . $key);
+
+        $tempJson = $res->getBody();
+        $nearbySearchJSON = json_decode($tempJson, true);
+     
+        $lattitude = $lat;
+        $longitude = $long;
+
+        $loopCount = count($nearbySearchJSON['results']);
+
+    // *** FOR LOOP FOR LOOP FOR LOOP ***
+
+        for($i=0; $i<$loopCount-1; $i++){
+
+
+            
+            if(null !== $nearbySearchJSON['results'][$i]['name']){
+                $nameArray[$i] = $nearbySearchJSON['results'][$i]['name'];
+            }
+            else{
+                $nameArray[$i]='';
+            }
+            
+            if(!empty($nearbySearchJSON['results'][$i]['id'])){
+                $idArray[$i] = $nearbySearchJSON['results'][$i]['id'];
+            }
+            else{
+                $idArray[$i] = '';
+            }
+            if(!empty($nearbySearchJSON['results'][$i]['geometry']['location']['lat'])){
+                $location_lat_array[$i] = $nearbySearchJSON['results'][$i]['geometry']['location']['lat'];
+            }
+            else{
+                $location_lat_array[$i]='';
+            }
+            if(!empty($nearbySearchJSON['results'][$i]['geometry']['location']['lng'])){
+                $location_lng_array[$i] = $nearbySearchJSON['results'][$i]['geometry']['location']['lng'];
+            }
+            else{
+                $location_lng_array[$i]='';
+            }
+            if(!empty($nearbySearchJSON['results'][$i]['vicinity'])){
+                $vicinityArray[$i] = $nearbySearchJSON['results'][$i]['vicinity'];
+                
+            }
+            else{
+                $vicinityArray[$i]='';
+
+            }
+            if(!empty($nearbySearchJSON['results'][$i]['place_id'])){
+                $place_id_array[$i] = $nearbySearchJSON['results'][$i]['place_id'];
+            }
+            else{
+                $place_id_array[$i]='';
+            }
+            if( ! empty( $nearbySearchJSON['results'][$i]['opening_hours'] ) && 
+                $nearbySearchJSON['results'][$i]['opening_hours'] !== null 
+            ) {
+                $open_now_array[$i] = $nearbySearchJSON['results'][$i]['opening_hours'];
+                if($open_now_array[$i]){
+                    $open_now_array[$i]='Yes';
+                }
+                else{
+                    $open_now_array[$i]='No';
+                }
+            }
+            else{
+                $open_now_array[$i]='N/A';
+            }
+
+        $recent_searches = \App\Search::get();
+        
+        }
+    
+        if(empty($recent_searches)){
+            $empty_search=true;
+        }
+        else{
+            $empty_search=false;
+        }
+
+        $cityName = explode(', ', $nearbySearchJSON['results'][0]['vicinity']);
+        $cityName = 'Current Location : ' . $cityName[1];
         
 
-        $nearbySearchJSON = $this->getNearbySearch($lattitude, $longitude, $keyword);
+        $searchDate = Carbon::now()->timezone('America/New_York')->toDayDateTimeString();
+        
 
-        dd($nearbySearchJSON);
+    // *** END OF FOR LOOP END OF FOR LOOP END OF FOR LOOP ***
 
+        return view('/places/display', compact(
+                    
+                    'empty_search',
+                    'recent_search_timestamp',
+                    'recent_keyword',
+                    'recent_city',
+                    'keyword',
+                    'searchDate',
+                    'cityName',
+                    'lattitude',
+                    'longitude',
+                    'loopCount', 
+                    'location_lat_array', 
+                    'location_lng_array', 
+                    'viewport_ne_lat', 
+                    'viewport_ne_lng', 
+                    'viewport_sw_lat', 
+                    'viewport_sw_lng', 
+                    'idArray', 
+                    'nameArray', 
+                    'open_now',
+                    'photo', 
+                    'indiv_photo_ref_array', 
+                    'place_id_array', 
+                    'rating', 
+                    'reference', 
+                    'scope', 
+                    'types', 
+                    'vicinityArray',
+                    'open_now_array',
+                    'jsonResponse'
+                    ));
 
-       
-        return 'fart';
+        
     }
 
 }

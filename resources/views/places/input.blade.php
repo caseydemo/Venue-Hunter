@@ -5,6 +5,9 @@ Let's Find a Venue
 @endsection
 
 @section('content')
+<head>
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
+</head>
 <div class="flex-center position-ref full-height">
             <div class="jumbotron input vertical-center">
                 <h1 class="medium-title">WHERE DO YOU WANT TO LOOK?</h1>
@@ -82,20 +85,13 @@ Let's Find a Venue
 			</div>
 			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
 	    </form> 
-
-
-
    <!-- if user's location is used -->
 		<form action="/geolocate" method="post" class="input form-inline">
-
-			
-
-
-			
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">	
-	        <input type="hidden" name="lattitude" value=52 id="lattitude">
-	        <input type="hidden" name="longitude" value=52 id="longitude">
+	        <input type="hidden" name="lattitude" id="lattitude">
+	        <input type="hidden" name="longitude" id="longitude">
 	        <input type="hidden" name="keyword" value='bar' id="keyword">
+	        
 		
 			  	<p class="input-label">Keyword: </p>
 			<div class="btn-group">
@@ -109,8 +105,13 @@ Let's Find a Venue
 			</div>
 			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
 	    </form>
-		  	
-		  	
+
+
+
+<!-- 	    <button onclick="getLatLng()">Ajax Call</button>
+ -->
+
+
 		  	<div class="map-container">
 		    	<div id="map"></div>
 			</div>

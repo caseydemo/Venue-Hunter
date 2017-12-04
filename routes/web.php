@@ -22,7 +22,14 @@ Route::get('/map', function () {
 
 Auth::routes();
 
+// test ajax call
+Route::post('/places/test', 'AjaxController@updateCustomerRecord');
+
+
+
 // Route::get('/', 'GuzzleController@getInput');
+
+Route::resource('/test', 'GeolocationController');
 
 Route::post('/recent-search', 'SearchController@getRecentSearch');
 
