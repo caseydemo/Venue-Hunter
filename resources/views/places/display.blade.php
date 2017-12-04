@@ -36,12 +36,15 @@ Let's Find a Venue
         @if($loopCount>0)
             <div class="jumbotron vertical-center">
                     @for($i=0; $i<$loopCount-1; $i++)
-                    <hr>
+                   
+                   <div class="center-the-wells">
+                    <div class="well well-lg">
                         <h2 style="font-weight: bold;">{{ $nameArray[$i] }}  </h2>
                         <div class="display-list">{{ $vicinityArray[$i] }}</div>
                         <div class="display-list">Open Now: {{ $open_now_array[$i] }}</div>       
                         <a href="/detail/{{$place_id_array[$i]}}"><button style="font-weight:bold;" class="btn hvr-wobble-vertical" >Details</button></a>
-                        <hr>
+                    </div>
+                </div>
                     @endfor
           </div>
           @endif
