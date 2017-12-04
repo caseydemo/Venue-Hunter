@@ -231,18 +231,18 @@ form.form-horizontal{
 	display: block;
 	font-weight: bold;
 }
+
+
 .well{
 	width: 35%;
 	margin:auto;
-	
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: 100px;
+	background-color: #F6B352;
 
 }
-.center-the-wells{
-	margin:auto;
-	margin-bottom: 15px;
-	text-align: center;
-	display:block;
-}
+
 
 
 /*MOBILE VIEW*/
