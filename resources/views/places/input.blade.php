@@ -5,9 +5,48 @@ Let's Find a Venue
 @endsection
 
 @section('content')
-<head>
-	<meta name="csrf-token" content="{{ csrf_token() }}" />
-</head>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Search for Venues Near You</h4>
+      </div>
+      <div class="modal-body">
+        <!-- if user's location is used -->
+		<form action="/geolocate" method="post" class="input form-inline">
+	        <input type="hidden" name="_token" value="{{ csrf_token() }}">	
+	        <input type="hidden" name="lattitude" id="lattitude">
+	        <input type="hidden" name="longitude" id="longitude">
+	        <input type="hidden" name="keyword" value='bar' id="keyword">
+	        
+				<h2 class="medium-title">Or use your current location</h2>
+			  	<p class="input-label">Keyword: </p>
+			<div class="btn-group">
+				<select name="keyword" style="font-weight: bolder;" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span class="caret"></span>
+			    <span class="sr-only">Toggle Dropdown</span>
+			    <li><option style="font-weight: bolder;" value="bar">Bar</option></li>
+			    <li><option style="font-weight: bolder;" value="night_club">Night Club</option></li>
+			    <li><option style="font-weight: bolder;" value="stadium">Stadium</option></li>
+			  </select>
+			</div>
+			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
+	    </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="flex-center position-ref full-height">
             <div class="jumbotron input vertical-center">
                 <h1 class="medium-title">WHERE DO YOU WANT TO LOOK?</h1>
@@ -106,7 +145,10 @@ Let's Find a Venue
 			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
 	    </form>
 
-
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
 
 
 	    	<h2 class="medium-title">I see you...</h2>
