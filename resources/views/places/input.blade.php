@@ -8,12 +8,12 @@ Let's Find a Venue
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="localSearchModal" tabindex="-1" role="dialog" aria-labelledby="localSearchModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Search for Venues Near You</h4>
+        <h4 class="modal-title" id="localSearchModalLabel">Search for Venues Near You</h4>
       </div>
       <div class="modal-body">
         <!-- if user's location is used -->
@@ -47,11 +47,16 @@ Let's Find a Venue
 </div>
 
 
-<div class="flex-center position-ref full-height">
-            <div class="jumbotron input vertical-center">
-                <h1 class="medium-title">WHERE DO YOU WANT TO LOOK?</h1>
 
-<form action="/" method="post" class="input form-inline">
+<!-- REGULAR SEARCH -->
+<!-- Modal -->
+<div class="modal fade" id="regularSearchModal" tabindex="-1" role="dialog" aria-labelledby="regularSearchModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        
+        <form action="/" method="post" class="input form-inline">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 			  <div class="form-group">
 			  	<p class="input-label">City: </p>
@@ -124,36 +129,34 @@ Let's Find a Venue
 			</div>
 			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
 	    </form> 
-   <!-- if user's location is used -->
-		<form action="/geolocate" method="post" class="input form-inline">
-	        <input type="hidden" name="_token" value="{{ csrf_token() }}">	
-	        <input type="hidden" name="lattitude" id="lattitude">
-	        <input type="hidden" name="longitude" id="longitude">
-	        <input type="hidden" name="keyword" value='bar' id="keyword">
-	        
-				<h2 class="medium-title">Or use your current location</h2>
-			  	<p class="input-label">Keyword: </p>
-			<div class="btn-group">
-				<select name="keyword" style="font-weight: bolder;" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    <span class="caret"></span>
-			    <span class="sr-only">Toggle Dropdown</span>
-			    <li><option style="font-weight: bolder;" value="bar">Bar</option></li>
-			    <li><option style="font-weight: bolder;" value="night_club">Night Club</option></li>
-			    <li><option style="font-weight: bolder;" value="stadium">Stadium</option></li>
-			  </select>
-			</div>
-			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
-	    </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex-center position-ref full-height">
+            <div class="jumbotron input vertical-center">
+                <h1 class="medium-title">WHERE DO YOU WANT TO LOOK?</h1>
+
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#regularSearchModal">
+ Search a City
+</button>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#localSearchModal">
+ Search Near You
 </button>
 
 
-	    	<h2 class="medium-title">I see you...</h2>
+	    	
 		  	
-		    	<div class="map-container" id="map"></div>
+		    	<div style="display: none;" class="map-container" id="map"></div>
 			
 
 			<script src="{{ asset('js/map.js') }}"></script>
