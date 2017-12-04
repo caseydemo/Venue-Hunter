@@ -13,9 +13,9 @@ Let's Find a Venue
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      	<h2 class="medium-title" id="localSearchModalLabel">Venues close to you</h2>
+      	<h2 class="medium-title" style="text-align: center;" id="localSearchModalLabel">Venues close to you</h2>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="text-align: center;">
         <!-- if user's location is used -->
 		<form action="/geolocate" method="post" class="input form-inline" id="local-search-form">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">	
@@ -55,15 +55,14 @@ Let's Find a Venue
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        
+        </div>
         <form action="/" method="post" class="input form-inline" id="regular-search-form">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-			  <div class="form-group">
-			  	<p class="input-label">City: </p>
+			  
+			  	<p class="location input-label">City: </p>
 			    <input type="text" name="city" class="form-control" id="city" placeholder="City">
-			  </div>
-			
-			  	<p class="input-label">State: </p>
+			 
+			  	<p class="location input-label">State: </p>
 	        <select style="font-weight: bolder;" class="btn btn-default dropdown-toggle" name="state">
 				<option value="AL">AL</option>
 				<option value="AK">AK</option>
@@ -117,7 +116,9 @@ Let's Find a Venue
 				<option value="WV">WV</option>
 				<option value="WY">WY</option>
 			</select>
-			  	<p class="input-label">Keyword: </p>
+		
+				<br>
+			  	<p class="keyword input-label">Keyword: </p>
 			<div class="btn-group">
 				<select name="keyword" style="font-weight: bolder;" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    <span class="caret"></span>
@@ -126,18 +127,17 @@ Let's Find a Venue
 			    <li><option style="font-weight: bolder;" value="night_club">Night Club</option></li>
 			    <li><option style="font-weight: bolder;" value="stadium">Stadium</option></li>
 			  </select>
-			</div>
+			 </div>
 			
 	    </form> 
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right" form="regular-search-form">SEARCH</button>
-      </div>
-    </div>
-  </div>
+	    <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right" form="regular-search-form">SEARCH</button>
+		</div>
+		</div>
+	</div>
 </div>
+
 
 <div class="flex-center position-ref full-height">
             <div class="jumbotron input vertical-center">

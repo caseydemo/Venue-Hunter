@@ -121,10 +121,19 @@ a:hover{
 }
 p.input-label{
 	margin-left: 15px;
+	margin-bottom: 40px;
 	display: inline-block;
 	font-size: 30px;
 	font-weight: bold;
 }
+p.location.input-label{
+	margin-left: 60px;
+}
+p.keyword.input-label{
+	
+	margin-left: 160px;
+}
+
 .nav-link{
 	font-weight: bold;
 }
@@ -235,6 +244,7 @@ form.form-horizontal{
 
 .well{
 	width: 35%;
+	height: 200px;
 	margin:auto;
 	margin-top: 25px;
 	margin-bottom: 25px;
