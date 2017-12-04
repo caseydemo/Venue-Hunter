@@ -92,7 +92,7 @@ Let's Find a Venue
 	        <input type="hidden" name="longitude" id="longitude">
 	        <input type="hidden" name="keyword" value='bar' id="keyword">
 	        
-		
+				<h2 class="medium-title">Or use your current location</h2>
 			  	<p class="input-label">Keyword: </p>
 			<div class="btn-group">
 				<select name="keyword" style="font-weight: bolder;" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -108,15 +108,12 @@ Let's Find a Venue
 
 
 
-<!-- 	    <button onclick="getLatLng()">Ajax Call</button>
- -->
 
+	    	<h2 class="medium-title">I see you...</h2>
+		  	
+		    	<div class="map-container" id="map"></div>
+			
 
-		  	<div class="map-container">
-		    	<div id="map"></div>
-			</div>
-			<div id="lat"></div>
-			<div id="lng"></div>
 			<script src="{{ asset('js/map.js') }}"></script>
 			<script async defer
 		    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM&callback=initMap">

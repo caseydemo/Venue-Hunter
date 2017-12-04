@@ -36,7 +36,6 @@ h1.medium-title{
 h2.medium-title{
 	font-size: 30px;
 	font-family: 'Monoton', cursive;
-	font-weight: bolder;
 
 }
 p.lead {
@@ -319,7 +318,10 @@ tbody td:before {
 .display-list{
 	display: block;
 }
-
+#map{
+	width: 200px;
+	height: 200px;
+}
 }
 
 
