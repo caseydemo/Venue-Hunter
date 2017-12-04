@@ -13,17 +13,17 @@ Let's Find a Venue
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="localSearchModalLabel">Search for Venues Near You</h4>
+      	<h2 class="medium-title" id="localSearchModalLabel">Venues close to you</h2>
       </div>
       <div class="modal-body">
         <!-- if user's location is used -->
-		<form action="/geolocate" method="post" class="input form-inline">
+		<form action="/geolocate" method="post" class="input form-inline" id="local-search-form">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">	
 	        <input type="hidden" name="lattitude" id="lattitude">
 	        <input type="hidden" name="longitude" id="longitude">
 	        <input type="hidden" name="keyword" value='bar' id="keyword">
 	        
-				<h2 class="medium-title">Or use your current location</h2>
+				
 			  	<p class="input-label">Keyword: </p>
 			<div class="btn-group">
 				<select name="keyword" style="font-weight: bolder;" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,13 +34,13 @@ Let's Find a Venue
 			    <li><option style="font-weight: bolder;" value="stadium">Stadium</option></li>
 			  </select>
 			</div>
-			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
+			
 	    </form>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right" form="local-search-form">SEARCH</button>
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@ Let's Find a Venue
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         
-        <form action="/" method="post" class="input form-inline">
+        <form action="/" method="post" class="input form-inline" id="regular-search-form">
 	        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 			  <div class="form-group">
 			  	<p class="input-label">City: </p>
@@ -127,13 +127,13 @@ Let's Find a Venue
 			    <li><option style="font-weight: bolder;" value="stadium">Stadium</option></li>
 			  </select>
 			</div>
-			<button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right">SEARCH</button>
+			
 	    </form> 
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" style="font-weight: bolder; margin-left: 15px;" class="btn btn-default hvr-sweep-to-right" form="regular-search-form">SEARCH</button>
       </div>
     </div>
   </div>
