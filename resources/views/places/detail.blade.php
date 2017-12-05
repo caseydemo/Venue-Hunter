@@ -29,7 +29,7 @@ Let's Find a Venue
         @if($open_now) 
             Yes <i class="fa fa-clock-o" aria-hidden="true"></i></h2></strong>
         @else
-            No</h2></div>
+            No</h2>
         @endif
         <img class="business-icon" src="{{ $icon }}"/>
         @if($website!= '#')

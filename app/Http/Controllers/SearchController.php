@@ -306,15 +306,15 @@ class SearchController extends Controller
         
         $name=$detailJSON['result']['name'];
 
+        
+
         for($i=0; $i<7; $i++){
-            if( ! empty( $detailJSON['results'][$i]['opening_hours'] ) && $detailJSON['results'][$i]['opening_hours'] !== null){
-                    $hours[$i]=$detailJSON['result']['opening_hours']['weekday_text'][$i]; 
-            }
-            else{
-                $hours[$i]='N/A';
-                $open_now='N/A';
-            }
+            
+            $hours[$i]=$detailJSON['result']['opening_hours']['weekday_text'][$i]; 
         }
+        $open_now = $detailJSON['result']['opening_hours']['open_now'];
+        
+
         
         if(isset($detailJSON['result']['reviews'])){
             $review_count=(count($author_name=$detailJSON['result']['reviews'][0]));
