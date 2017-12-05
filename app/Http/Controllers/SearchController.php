@@ -307,12 +307,19 @@ class SearchController extends Controller
         $name=$detailJSON['result']['name'];
 
         
-
-        for($i=0; $i<7; $i++){
-            
-            $hours[$i]=$detailJSON['result']['opening_hours']['weekday_text'][$i]; 
+        if(!empty($detailJSON['result']['opening_hours'])){
+            $open_now = $detailJSON['result']['opening_hours']['open_now'];
+            for($i=0; $i<7; $i++){
+                $hours[$i]=$detailJSON['result']['opening_hours']['weekday_text'][$i]; 
+            }
         }
-        $open_now = $detailJSON['result']['opening_hours']['open_now'];
+        else{
+            for($i=0; $i<7; $i++){
+                $hours[$i]='N/A'; 
+            }
+            $open_now = 'N/A';
+        }
+        
         
 
         

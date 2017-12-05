@@ -38,13 +38,13 @@ Let's Find a Venue
                 <div class="row">
                     @for($i=0; $i<$loopCount-1; $i++)
                    
-                   
-                    <div class="col-md-6 well well-lg">
+                   <a href="/detail/{{$place_id_array[$i]}}">
+                    <div class="hvr-wobble-vertical col-md-6 well well-lg">
                         <h2 style="font-weight: bold;">{{ $nameArray[$i] }}  </h2>
                         <div class="display-list">{{ $vicinityArray[$i] }}</div>
                         <div class="display-list">Open Now: {{ $open_now_array[$i] }}</div>       
-                        <a href="/detail/{{$place_id_array[$i]}}"><button style="font-weight:bold;" class="btn hvr-wobble-vertical" >Details</button></a>
                     </div>
+                    </a>
                 
                     @endfor
                     </div>
