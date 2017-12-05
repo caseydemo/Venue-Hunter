@@ -19,26 +19,42 @@ Let's Find a Venue
          <input type="hidden" name="longitude" value="{{ $longitude }}">
             
     </form>
-     <div class="flex-center position-ref full-height">
-            <div class="jumbotron vertical-center">
-                <h1 class="medium-title">{{ $name }}</h1>
-                <p class="lead">{{ $address }}</p>
-                <p class="lead"><a href="tel:'{{ $phone }}'">{{ $phone }}</a> </p>
+    <div class="well detail-title-well">
+        <h1 class="detail-title">{{ $name }}</h1>
+        <p class="lead">{{ $address }}</p>
+        <p class="lead"><a href="tel:'{{ $phone }}'">{{ $phone }}</a> </p>
+       
+    </div>
 
+     
+
+
+        <div class="top-center-detail">        
+                 <!-- IFRAME -->
+            <iframe class="i-frame" src="{{$url}}">
+            </iframe>
+                    
+            <div class="web-div">
+                @if($website!= '#')
+                    
+                    <a href="{{ $website }}" target="_blank"><button class="btn-lg hvr-pulse">{{$name}}'s Website</button></a>
+                @endif
+            </div>
+            <div class="contact-div">
+                <button type="submit" name="button" value="save" form="detail" class="btn-lg hvr-pulse">Add to Contacts</button>
+            </div>
+        </div>
+        
+
+<div class="flex-center position-ref full-height">
+            <div class="jumbotron vertical-center">
+        
         <strong><h2>Open Now:
         @if($open_now) 
             Yes <i class="fa fa-clock-o" aria-hidden="true"></i></h2></strong>
         @else
             No</h2>
         @endif
-        <img class="business-icon" src="{{ $icon }}"/>
-        @if($website!= '#')
-            
-            <a href="{{ $website }}" target="_blank"><button class="btn-lg hvr-pulse">{{$name}}'s Website</button></a>
-        @endif
-        <button type="submit" name="button" value="save" form="detail" class="btn-lg hvr-pulse">Add to Contacts</button>
-            <button class="btn-lg hvr-pulse" onclick="window.print()">Print Results</button>
-        
         
         @if($hours[0]!='N/A')
             <ul><strong>Hours:</ul></strong> 
@@ -47,12 +63,6 @@ Let's Find a Venue
             @endfor
         @endif
         </strong>
-
-        <!-- IFRAME -->
-        
-            <iframe class="i-frame" src="{{$url}}">
-            </iframe>
-        
        
         @if($review_bool)
             <h2>Reviews:</h2>
