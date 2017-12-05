@@ -317,7 +317,7 @@ class SearchController extends Controller
             for($i=0; $i<7; $i++){
                 $hours[$i]='N/A'; 
             }
-            $open_now = 'N/A';
+            $open_now = false;
         }
         
         

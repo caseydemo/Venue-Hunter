@@ -167,7 +167,8 @@ p.keyword.input-label{
 .clippy{
 	display: block;
     margin: auto;
-    margin-bottom: 0px;
+    margin-top: 50px;
+    margin-bottom: 20px;
     width: 50%;	
 }
 .search-error{
@@ -242,7 +243,8 @@ form.form-horizontal{
 	margin:auto;
 	margin-top: 25px;
 	margin-bottom: 25px;
-	margin-left: 100px;
+	margin-left: 0px;
+	margin-right: 15px;
 	background-color: #F6B352;
 
 }
@@ -253,6 +255,7 @@ form.form-horizontal{
 	margin-top: 0px;
 	padding-top: 10px;
 	margin-bottom: 10px;
+	padding-left: 0px; 
 	background-color: #F6B352;
 	text-align: center;
 	
@@ -281,7 +284,6 @@ float:right;
 	float: left;
 	margin-left: 150px;
    margin-top: 70px;
-
 
 }
 .bottom-right-button{
@@ -313,8 +315,42 @@ float:right;
 .outer-well{
 	width: 100%;
 }
+.modal-content{
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+}
+.modal-footer{
+	text-align: center;
+}
+.modal-title{
+	font-family: 'Monoton', cursive;
+	font-size: 40px;
+}
+.big-left-button{
+	margin-left: 200px;
+	border-radius: 50%; 
+	display:inline;
+	float: left;	
+   	margin-top: 0px;
+   	width: 325px;
+   	height: 325px;
+   	font-size: 50px;
+}
+.big-right-button{
+	margin-right: 300px;
+	border-radius: 50%; 
+	display:inline;
+	float: right;
+    margin-top: 70px;
+    width: 125px;
+    height: 125px;
+    font-size: 20px;
 
+}
+.row{
 
+}
 
 
 

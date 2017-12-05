@@ -20,8 +20,7 @@ Let's Find a Venue
       </div>
       <div class="modal-body">
         @if($review_bool)
-            <h2>Reviews:</h2>
-            <hr>
+            
             @for($i=0; $i<3; $i++)
                 <h3>{{$i+1}}. By:{{ $author_name_array[$i] }}, {{ $time_description_array[$i]}}</h3>
                 <div class="review-body">
@@ -33,16 +32,15 @@ Let's Find a Venue
                
 
                 </div>
-                <hr>
                 <br>
             @endfor
-            </strong></ul>
+           
             
         @endif
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    
       </div>
     </div>
   </div>
@@ -58,15 +56,15 @@ Let's Find a Venue
         <h4 class="modal-title" id="hoursModalLabel">Opening Hours</h4>
       </div>
       <div class="modal-body">
-         <strong><h2>Open Now:
+         <h1 style="font-weight: bold;">Open Now:
         @if($open_now) 
-            Yes <i class="fa fa-clock-o" aria-hidden="true"></i></h2></strong>
+            Yes <i class="fa fa-clock-o" aria-hidden="true"></i></h1>
         @else
-            No</h2>
+            No</h1>
         @endif
         
         @if($hours[0]!='N/A')
-            <ul><strong>Hours:</ul></strong> 
+            <ul><strong>Hours:</ul> 
             @for($i=0; $i<7; $i++)
                 <p>{{ $hours[$i] }}</p>
             @endfor
@@ -74,7 +72,7 @@ Let's Find a Venue
         </strong>      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+   
       </div>
     </div>
   </div>
@@ -106,7 +104,7 @@ Let's Find a Venue
     <div class="well detail-title-well">
         <h1 class="detail-title">{{ $name }}</h1>
         <p class="lead">{{ $address }}</p>
-        <p class="lead"><a href="tel:'{{ $phone }}'">{{ $phone }}</a> </p>
+        <p class="lead"><a href="tel:'{{ $phone }}'">Phone # {{ $phone }}</a> </p>
     </div>
 </div>
 
@@ -133,50 +131,6 @@ Let's Find a Venue
                 </button>
             </div>
         </div>
-        
-
-<!-- <div class="flex-center position-ref full-height">
-            <div class="jumbotron vertical-center">
-        
-        <strong><h2>Open Now:
-        @if($open_now) 
-            Yes <i class="fa fa-clock-o" aria-hidden="true"></i></h2></strong>
-        @else
-            No</h2>
-        @endif
-        
-        @if($hours[0]!='N/A')
-            <ul><strong>Hours:</ul></strong> 
-            @for($i=0; $i<7; $i++)
-                <p>{{ $hours[$i] }}</p>
-            @endfor
-        @endif
-        </strong>
-       
-        @if($review_bool)
-            <h2>Reviews:</h2>
-            <hr>
-            @for($i=0; $i<3; $i++)
-                <h3>{{$i+1}}. By:{{ $author_name_array[$i] }}, {{ $time_description_array[$i]}}</h3>
-                <div class="review-body">
-                    @for($j=0; $j<$rating_array[$i]; $j++)
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    @endfor
-                    <p>{{$rating_array[$i]}} Stars</p>
-                    <p>{{ $review_text_array[$i] }}</p>
-               
-
-                </div>
-                <hr>
-                <br>
-            @endfor
-            </strong></ul>
-            
-        @endif
-        </div>
-    </div>
-
-		 -->
-	
+        	
 </body>
 @endsection

@@ -7,13 +7,12 @@ Let's Find a Venue
 
 @section('content')
     <body>
-        <div class="flex-center position-ref full-height">
-            <div class="jumbotron searches vertical-center">
-                <h1 class="medium-title">{{ $cityName }}</h1>
-                @if(!$empty_search)
-                <h3 style="font-weight:bold">{{ $searchDate }}</h3>
-                @endif
-                 <form class="form-horizontal" method="post" action="/places">
+
+    <div class="outer-well">
+        <div class="well detail-title-well">
+            <h2 class="medium-title">{{ $cityName }}</h2>
+            <h3 style="font-weight:bold">{{ $searchDate }}</h3>
+            <form class="form-horizontal" method="post" action="/places">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
                     <input type="hidden" name="city" value="{{ $cityName }}"> 
                     <input type="hidden" name="keyword" value="{{ $keyword }}"> 
@@ -28,13 +27,21 @@ Let's Find a Venue
                         <div class="clippy">
                             <img src="{{ asset('clippy_animation.gif') }}">
                         </div>
-                         <a style="margin:auto;" href="/input"><button class=" btn-lg hvr-bounce-to-right block-button">Try another search</button></a>
+                         <a style="margin:auto;" href="/input"><button style="border-radius: 50%; width: 150px; height: 150px;" class=" btn-lg hvr-grow block-button">Try another search</button></a>
                     @endif
                 </form>
-            </div>
-                    </div>
+            
+        </div>
+    </div>
+
+
+
+
+
+        <div class="flex-center position-ref full-height">
+           
         @if($loopCount>0)
-            <div class="jumbotron vertical-center">
+   
                 <div class="row">
                     @for($i=0; $i<$loopCount-1; $i++)
                    

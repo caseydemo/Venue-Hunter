@@ -24,7 +24,7 @@ Let's Find a Venue
 	        <input type="hidden" name="keyword" value='bar' id="keyword">
 	        
 				
-			  	<p class="input-label">Keyword: </p>
+			  	<p class="input-label">Choose a Keyword: </p>
 			<div class="btn-group">
 				<select name="keyword" style="font-weight: bolder;" type="button hvr-float" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    <span class="caret"></span>
@@ -145,12 +145,12 @@ Let's Find a Venue
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#regularSearchModal">
- Search a City
+<button type="button"   class="btn hvr-grow btn-lg big-left-button" data-toggle="modal" data-target="#regularSearchModal">
+ Far Away?
 </button>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#localSearchModal">
- Search Near You
+<button type="button"  class="btn hvr-grow btn-lg big-right-button" data-toggle="modal" data-target="#localSearchModal">
+ Near You?
 </button>
 
 
