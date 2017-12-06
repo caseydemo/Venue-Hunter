@@ -5,7 +5,8 @@ Let's Find a Venue
 @endsection
 
 @section('content')
-
+<head>
+</head>
 
 <div class="flex-center position-ref full-height">
             <div class="jumbotron vertical-center">
@@ -26,17 +27,17 @@ Let's Find a Venue
     
 	<div class="jumbo-center">
 	@if($search_count>1)
-		<table class="table table-striped">
+		<table class="table table-headings table-striped">
 			<thead>
-			    <th>City</th>
-			    <th>Keyword</th> 
-			    <th>Searched At</th>
-			    <th>Delete</th>
+			    <th class="table-headings">City</th>
+			    <th class="table-headings">Keyword</th> 
+			    <th class="table-headings">Searched At</th>
+			    <th class="table-headings">Delete</th>
 		  	</thead>
 		@for($i=0; $i<$search_count-1; $i++)
 			@if($user_id[$i]==\Auth::user()->name)		  
 					  	<tr>
-					  		<td><button style="font-weight: bold" class="btn hvr-bounce-to-right" type="submit" form="{{$i}}">{{ $recent_city[$i] }}</button></td>
+					  		<td><button style="font-weight: bold" class="btn table-button hvr-bounce-to-right" type="submit" form="{{$i}}">{{ $recent_city[$i] }}</button></td>
 						    <td>{{ $recent_keyword[$i] }}</td>
 						    <td>{{ $searched_at[$i] }}</td>
 						     <td>
@@ -57,6 +58,9 @@ Let's Find a Venue
 	<a href="/home"><button class="btn hvr-bounce-to-right">Let's find a venue</button></a>
 	@endif
 @endif
+
+
+	
 			</div>
 		</div>
 	</div>

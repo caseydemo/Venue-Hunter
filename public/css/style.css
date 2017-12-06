@@ -351,6 +351,15 @@ float:right;
 	margin-left: 150px;
 
 }
+.table-button{
+	width: 100%;
+	height: 100%;
+	font-weight: bolder;
+}
+.internet-icon{
+	width: 45px;
+	height: auto;
+}
 
 
 

@@ -10,7 +10,7 @@ Contacts Page
     <div class="jumbotron vertical-center">
     	<h1 class="medium-title">{{ \Auth::user()->name }}'s Saved Contacts</h1>
     @if($loop_count>0)
-   		<table style="overflow-x:auto;" class="table">
+   		<table style="overflow-x:auto;" class="table table-striped">
 		<thead >
 			<th class="table-headings">Business Name</th>
 			<th class="table-headings">Address</th>
@@ -21,10 +21,10 @@ Contacts Page
 		</thead>
 		@for($i=0; $i<$loop_count; $i++)
 		<tr>
-			<td><strong><a href="/show-contacts/{{$place_id[$i]}}"><button style="font-weight:bold;" class="btn hvr-wobble-vertical" >{{ $business_name[$i] }}</button></a></strong></td>
+			<td><strong><a href="/show-contacts/{{$place_id[$i]}}"><button style="font-weight:bold;" class="table-button btn hvr-wobble-vertical" >{{ $business_name[$i] }}</button></a></strong></td>
 			<td>{{ $address[$i] }} </td>
 			<td width="20%" ><a href="tel:'{{ $phone[$i] }}'">{{ $phone[$i] }}</a>  </td>
-			<td><a href="{{ $website[$i] }}"><button class="btn hvr-bounce-to-right">Website</button></a> </td>
+			<td><a href="{{ $website[$i] }}" target="_blank"><img class="internet-icon hvr-grow" src="{{ asset('internet-icon.png') }}" /></a> </td>
 			<td>{{ $saved_at[$i] }} </td>
 			<td>
 				<form class="button-form" method="post" action="/contacts/{{$contact_id[$i]}}">
