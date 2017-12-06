@@ -20,10 +20,15 @@
   -webkit-transition-property: transform;
   transition-property: transform;
 }
+
 .hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
   -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  transform: scale(1.2);
+  font-weight: bold;
 }
+
+
+
 
 /* Shrink */
 .hvr-shrink {
@@ -39,7 +44,7 @@
 }
 .hvr-shrink:hover, .hvr-shrink:focus, .hvr-shrink:active {
   -webkit-transform: scale(0.9);
-  transform: scale(0.9);
+  transform: scale(0.7);
 }
 
 /* Pulse */
