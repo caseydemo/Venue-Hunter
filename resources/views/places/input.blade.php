@@ -153,12 +153,13 @@ Venue-Hunter
  Near You?
 </button>
 		<div style="display: none;" class="map-container" id="map"></div>
+
+		<script src="{{ asset('js/map.js') }}"></script>
+
+            
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM&callback=initMap"></script>
 			
 
-			<script src="{{ asset('js/map.js') }}"></script>
-			<script async defer
-		    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfFpdRXLxePuewXiw7SLYut0e3adZNymM&callback=initMap">
-		    </script>
 		  </body>
 		</html>
   	</div>
