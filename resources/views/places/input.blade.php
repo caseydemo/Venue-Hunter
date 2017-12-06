@@ -152,11 +152,7 @@ Venue-Hunter
 <button type="button"  class="btn hvr-grow btn-lg big-right-button" data-toggle="modal" data-target="#localSearchModal">
  Near You?
 </button>
-
-
-	    	
-		  	
-		    	<div style="display: none;" class="map-container" id="map"></div>
+		<div style="display: none;" class="map-container" id="map"></div>
 			
 
 			<script src="{{ asset('js/map.js') }}"></script>
