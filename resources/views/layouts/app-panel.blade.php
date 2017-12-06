@@ -51,7 +51,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a  class="hvr-grow navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Venue-Hunter') }}
                     </a>
                 </div>
@@ -60,9 +60,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                     
-                        <li><a class="nav-link" href="{{ url('/home') }}">Search</a></li>
-                         <li><a class="nav-link" href="{{ url('/saved') }}">Saved Searches</a></li>
-                         <li><a class="nav-link" href="{{ url('/contacts') }}">Contacts</a></li>
+                        <li><a style="color:#1F2124;" class="hvr-grow nav-link" href="{{ url('/home') }}">Search</a></li>
+                         <li><a style="color:#1F2124;" class="hvr-grow nav-link" href="{{ url('/saved') }}">Saved Searches</a></li>
+                         <li><a style="color:#1F2124;" class="hvr-grow nav-link" href="{{ url('/contacts') }}">Contacts</a></li>
                         
 
                     </ul>
@@ -75,7 +75,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" class="hvr-grow nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
