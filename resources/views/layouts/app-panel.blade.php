@@ -14,7 +14,7 @@
             <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
 
               <script src="https://use.fontawesome.com/14f1f2c704.js"></script>
-              <title>Geolocation</title>
+              <title>Venue-Hunter</title>
             <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
             <meta charset="utf-8">
             <style>

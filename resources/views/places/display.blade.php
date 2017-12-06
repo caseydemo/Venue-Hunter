@@ -1,8 +1,7 @@
 @extends('layouts.app-panel')
 
 @section('title')
-Let's Find a Venue
-
+Venue-Hunter
 @endsection
 
 @section('content')
