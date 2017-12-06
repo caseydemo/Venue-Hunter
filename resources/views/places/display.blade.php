@@ -27,7 +27,7 @@ Let's Find a Venue
                         <div class="clippy">
                             <img src="{{ asset('clippy_animation.gif') }}">
                         </div>
-                         <a style="margin:auto;" href="/input"><button style="border-radius: 50%; width: 150px; height: 150px;" class=" btn-lg hvr-grow block-button">Try another search</button></a>
+                         <a style="margin:auto;" href="/home"><button style="border-radius: 50%; width: 150px; height: 150px;" class=" btn-lg hvr-grow block-button">Try another search</button></a>
                     @endif
                 </form>
             
