@@ -9,4 +9,16 @@
 
 ## Venue Hunter
 
+ICONS:
+----------
 Internet Browsing by Artdabana@Design from the Noun Project
+
+
+API Credits:
+---------
+Google Maps Geolocation: [link](https://developers.google.com/maps/documentation/javascript/examples/map-geolocation)<br>
+Google Maps Geocoding: [link](https://developers.google.com/maps/documentation/geocoding/intro)<br>
+Google Maps Embed API: [link](https://developers.google.com/maps/documentation/embed/)<br>
+Google Places Nearby Search: [link](https://developers.google.com/places/web-service/search)<br>
+Google Places Detail Search: [link](https://developers.google.com/places/web-service/details)<br>
+W3 Geolocation Standard: [link](https://dev.w3.org/geo/api/spec-source.html)<br>
