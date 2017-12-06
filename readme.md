@@ -15,6 +15,8 @@ Venue Hunter is an application designed to help bands find places to play. The i
 - find contact information (phone#, website, map information) of venues
 - save searches and contact information to a database under your logged in credentials
 
+## Heroku [venue-hunter](http://venue-hunter.herokuapp.com/)
+
 Technologies
 ------------
 
