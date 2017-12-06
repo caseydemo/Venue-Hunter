@@ -15,6 +15,14 @@ Venue Hunter is an application designed to help bands find places to play. The i
 - find contact information (phone#, website, map information) of venues
 - save searches and contact information to a database under your logged in credentials
 
+Technologies
+------------
+
+* PHP with the Laravel Framework [Laravel](https://laravel.com/docs/5.5/installation), [PHP](https://secure.php.net/)  <br>
+* postgreSQL for the database [link](https://www.postgresql.org/)  <br>
+* Guzzle Http Client (for the majority of api calls) [link](http://docs.guzzlephp.org/en/stable/) <br>
+* Javascript (for calling the tricky google maps geolocation api) [link](https://www.javascript.com/) <br>
+
 
 Screenshots:
 -----------
@@ -23,19 +31,6 @@ Screenshots:
 <img style="margin:auto; display:inline-block; width: 400px; height: auto;" src="public/nearby-search.png"/>
 <img style="margin:auto; display:block; width: 500px; height: auto;" src="public/details-1.gif"/>
 <img style="margin:auto; display:block; width: 500px; height: auto;" src="public/walk-through1.gif"/>
-
-
-
-
-
-
-Technologies
-------------
-
-* PHP with the Laravel Framework [Laravel](https://laravel.com/docs/5.5/installation), [PHP](https://secure.php.net/)  <br>
-* postgreSQL for the database [link](https://www.postgresql.org/)  <br>
-* Guzzle Http Client (for the majority of api calls) [link](http://docs.guzzlephp.org/en/stable/) <br>
-* Javascript (for calling the tricky google maps geolocation api) [link](https://www.javascript.com/) <br>
 
 
 ICONS:
